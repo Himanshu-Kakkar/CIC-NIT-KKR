@@ -1,0 +1,186 @@
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.notification-icon {
+  position: relative;
+  }
+  
+  .notification-icon .notification-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  }
+
+  #logo{
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  
+  }
+  .notification-message {
+    position: fixed;
+    top: 65px;
+    right: 85px;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    border-radius: 5px;
+    padding-left: 70px;
+    padding-right: 70px;
+    /* max-width: 200px; */
+    width: min-content;
+  }
+  .notification-message p {
+    text-align: center;
+  }
+  
+  
+  
+  .notification-icon {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .notification-count {
+    position: absolute;
+    top: -7px;
+    right: -4px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px;
+    font-size: 9px;
+  }
+  
+  
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: -10px;
+  z-index: 1;
+  background-color: #f1f1f1;
+  min-width: 80px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+  padding: 10px 14px;
+  border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  border-radius: 5px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 6px 0;
+  text-decoration: none;
+  font-size: 15px;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.notification-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #ccc;
+}
+
+.notification-form h2 {
+  margin-top: 0;
+}
+/* 
+.notification-form label {
+  display: block;
+  margin-bottom: 5px;
+} */
+
+.notification-form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.notification-form .error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.notification-button:hover {
+  background-color: #005ea6;
+}
+
+p {
+  margin-top: 16px;
+}
+
+.notification-container {
+  width: 500px;
+  height: 400px;
+  margin: 150px auto;
+  padding: 45px;
+  background-color: #f1f1f1;
+  color: #161616;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  border-radius: 35px;
+}
+
+.logout-icon {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  transition: all 0.2s ease-in-out;
+}
+
+.notification-button {
+  border: none;
+  background-color: #0077cc;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  transition: all 0.2s ease-in-out;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
+}
+  
+  

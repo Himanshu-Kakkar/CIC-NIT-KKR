@@ -1,0 +1,285 @@
+/* NavBar.css */
+.navbar-container {
+  width: 90%;
+  max-width: 1400px;
+  height: auto;
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 12px;
+  z-index: 1000;
+  background-color: #192235;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.nav-links {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav-links li {
+  position: relative;
+  margin: 0 0.8rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Hover effect with gradient */
+.nav-links a:hover {
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Create popup effect for submenu */
+.nav-links li:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #2c3e50;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Submenu popup styling */
+.nav-links li ul {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: linear-gradient(135deg, #192235, #2c3e50);
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 180px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  margin-top: 15px;
+  flex-direction: column;
+}
+
+.nav-links li:hover ul {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-links li ul li {
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+.nav-links li ul a {
+  display: block;
+  font-size: large;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.nav-links li ul a:hover {
+  color: #3498db;
+  transform: translateX(5px);
+  background: transparent;
+  box-shadow: none;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.icon-button:hover {
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Admin Login Button */
+.admin-login-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.admin-login-btn:hover {
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Logout Button */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Mobile Menu Button (will be used with JavaScript) */
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .navbar-container {
+    width: 95%;
+  }
+  
+  .nav-links a {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    width: 95%;
+    top: 15px;
+  }
+  
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .nav-links {
+    display: none; /* Will be toggled with JavaScript */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #192235;
+    border-radius: 0 0 12px 12px;
+    padding: 1rem 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-links.active {
+    display: block;
+  }
+  
+  .nav-links ul {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .nav-links li {
+    margin: 0.5rem 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav-links a {
+    width: 100%;
+    display: block;
+    padding: 0.8rem 1rem;
+  }
+  
+  .admin-login-btn span,
+  .logout-btn span {
+    display: none;
+  }
+}
