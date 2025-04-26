@@ -19,7 +19,7 @@ function ResetPassword() {
     }
 
     try {
-      const response = await axios.post('http://localhost:5001/api/auth/resetPassword', {
+      const response = await axios.post('http://localhost:5002/api/auth/resetPassword', {
         userId: id,
         token: token,
         newPassword: newPassword
@@ -27,7 +27,7 @@ function ResetPassword() {
 
       setSuccess(response.data.message);
       setError('');
-      setTimeout(() => navigate('/'), 3001); // redirect to login after 3s
+      setTimeout(() => navigate('/'), 3000); // redirect to login after 3s
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.message || "Something went wrong");

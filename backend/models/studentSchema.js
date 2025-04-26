@@ -1,25 +1,26 @@
-// models/studentSchema.js
 const mongoose = require("mongoose");
 
-const studentSchema = new mongoose.Schema({
+const memberSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   rollNo: {
     type: String,
     required: true,
-    unique: true
+    unique: true, // Roll number should be unique for each member
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true, // Email should be unique for each member
   },
   password: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
-module.exports = mongoose.model("Members", studentSchema);
+const Member = mongoose.model("Member", memberSchema);
+
+module.exports = Member;

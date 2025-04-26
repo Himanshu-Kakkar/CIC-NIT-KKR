@@ -14,7 +14,7 @@ function ScheduleCalendar() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://localhost:5001/calendarschema");
+        const response = await axios.get("http://localhost:5002/calendarschema");
         const calendarEvents = response.data.map((event) => {
           return {
             title: event.title,
@@ -53,7 +53,7 @@ function ScheduleCalendar() {
           };
   
           axios
-            .post("http://localhost:5001/calendarschema", event)
+            .post("http://localhost:5002/calendarschema", event)
             .then((response) => {
               setEvents([...events, { ...event, id: response.data._id }]);
             });
@@ -70,7 +70,7 @@ function ScheduleCalendar() {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5001/calendarschema/${clickInfo.event.id}`).then(() => {
+        axios.delete(`http://localhost:5002/calendarschema/${clickInfo.event.id}`).then(() => {
           const filteredEvents = events.filter((event) => event.id !== clickInfo.event.id);
           setEvents(filteredEvents);
         });
@@ -85,7 +85,7 @@ function ScheduleCalendar() {
       start: updateInfo.start,
       end: updateInfo.end,
     };
-    axios.put(`http://localhost:5001/calendarschema/${event.id}`, updatedEvent).then(() => {
+    axios.put(`http://localhost:5002/calendarschema/${event.id}`, updatedEvent).then(() => {
       calendarApi.getApi().updateEvent(updatedEvent);
     });
   }
@@ -100,7 +100,7 @@ function ScheduleCalendar() {
         allDay: true,
       };
 
-      axios.post('http://localhost:5001/calendarschema', event).then((response) => {
+      axios.post('http://localhost:5002/calendarschema', event).then((response) => {
         setEvents([...events, { ...event, id: response.data._id }]);
       });
     }

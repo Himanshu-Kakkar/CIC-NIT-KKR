@@ -17,7 +17,7 @@ const token = localStorage.getItem('token');
   const [studentsName, setStudentsName] = useState([
   ])
   useEffect(() => {
-    axios.get('http://localhost:5001/getuser',{
+    axios.get('http://localhost:5002/getuser',{
       headers:{
         'content-type':'application/json',
         'token': token
@@ -59,7 +59,7 @@ const token = localStorage.getItem('token');
     const date = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
      
      const arr = Object.entries(attendance).map(([name, status]) => ({ name, status }));
-     axios.post('http://localhost:5001/submit-attendence', {
+     axios.post('http://localhost:5002/submit-attendence', {
        attendanceData: arr,
        date // Convert date to ISO string format
      },{

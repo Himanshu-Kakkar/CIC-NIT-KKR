@@ -11,7 +11,7 @@ function TeamCreate() {
   const token=localStorage.getItem('token')
 
   useEffect(() => {
-    axios.get("http://localhost:5001/getuser")
+    axios.get("http://localhost:5002/getuser")
       .then(response => {
         setStudents(response.data.data);
       })
@@ -61,7 +61,7 @@ function TeamCreate() {
  
     
     
-    axios.post("http://localhost:5001/addteam", teamData, {
+    axios.post("http://localhost:5002/addteam", teamData, {
   headers:{
     'content-type':'application/json',
     'token': token
@@ -72,7 +72,7 @@ function TeamCreate() {
     title: 'Team created',
     text: 'Team created successfully',
     icon: 'success',
-    timer: 3001
+    timer: 3000
   });
   setTeamNo("");
   setSelectedTeamNo("");
@@ -85,7 +85,7 @@ function TeamCreate() {
     title: 'Error',
     text: 'There was an error creating the team',
     icon: 'error',
-    timer: 3001
+    timer: 3000
   });
 });
 

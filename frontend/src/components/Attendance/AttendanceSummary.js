@@ -49,7 +49,7 @@ const AttendanceSummary = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/getattendancebydate', { date: formattedDate }, {
+      const response = await axios.post('http://localhost:5002/getattendancebydate', { date: formattedDate }, {
         headers: {
           'content-type': 'application/json',
           'token': token

@@ -83,7 +83,7 @@ function NotificationForm({ setNotificationMessage, handleNotificationSubmit }) 
       title,content
     };
     // Logic to handle the submission of the notification form
-    axios.post('http://localhost:5001/notify-all', data)
+    axios.post('http://localhost:5002/notify-all', data)
     .then((res) => {
       swal("Success ", "Notification sent ", "success");
   }

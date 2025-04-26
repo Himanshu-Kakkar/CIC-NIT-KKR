@@ -22,7 +22,7 @@ function AdminLogin() {
 
     const data = { email, password };
 
-    axios.post('http://localhost:5001/api/auth/adminlogin', data)
+    axios.post('http://localhost:5002/api/auth/adminlogin', data)
       .then((res) => {
         localStorage.setItem('token', res.data.token);
         window.alert("Login Successful");
@@ -37,7 +37,7 @@ function AdminLogin() {
   const handleForgotPassword = (event) => {
     event.preventDefault();
 
-    axios.post('http://localhost:5001/api/auth/forgotPassword', { email })
+    axios.post('http://localhost:5002/api/auth/forgotPassword', { email })
       .then((res) => {
         alert("Reset link sent to your email");
         setShowForm('signin');

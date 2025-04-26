@@ -230,7 +230,7 @@ input[type="radio"]:checked + label {
 }
 
 .check:checked + label .icon:before {
-  content: '✓';
+  content: 'âœ“';
   position: absolute;
   top: 50%;
   left: 50%;

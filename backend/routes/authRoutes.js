@@ -5,7 +5,7 @@ const authController = require('../controllers/authController');
 
 app.post('/register', authController.register);
  app.post('/adminlogin', authController.login);
- app.post('/userregister',authController.userRegister);
+//  app.post('/userregister',authController.userRegister);
  app.post('/userlogin',authController.userLogin);
  app.post('/userData',authController.userData)
 

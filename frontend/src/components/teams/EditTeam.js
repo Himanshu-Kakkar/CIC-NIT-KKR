@@ -12,7 +12,7 @@ function EditTeam() {
       alert("Please select a team.");
       return;
     }
-    axios.post('http://localhost:5001/getteams',{ teamNo: teamNo }).then((response)=>{
+    axios.post('http://localhost:5002/getteams',{ teamNo: teamNo }).then((response)=>{
       setTeamMembers(response.data);
       console.log(teamMembers)
     }).catch((error)=>{

@@ -3,8 +3,7 @@ const ExcelJS = require('exceljs');
 
 // Create event
 exports.createEvent = async (req, res) => {
-  console.log("Request Body:", req.body); // Check if title and endTime are coming correctly
-  console.log("Uploaded File:", req.file); // Check if file is uploaded properly
+ 
 
   try {
     const { title, endTime } = req.body;
@@ -15,7 +14,7 @@ exports.createEvent = async (req, res) => {
     }
 
     const posterUrl = req.file.path;
-
+    console.log(posterUrl);
     // Create new event and save to MongoDB
     const newEvent = new Event({
       title,

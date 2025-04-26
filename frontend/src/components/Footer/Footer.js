@@ -43,12 +43,10 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-links">
-            <a href="/">Home</a>
-            <a href="/clubs">Clubs</a>
-            <a href="/events">Events</a>
-            <a href="/contact">Contact</a>
-            <a href="/pastevents">Gallery</a>
-            <a href="/developers">Developers</a>
+            <a href="#">Home</a>
+            <a href="#">Clubs</a>
+            <a href="#">Events</a>
+            <a href="#">Contact</a>
           </div>
           
           {/* Social icons */}

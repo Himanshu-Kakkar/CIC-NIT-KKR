@@ -27,19 +27,16 @@
 
   const authRoutes=require('./routes/authRoutes')
   const eventRoutes = require("./routes/eventRoutes");
-  
+  const memberRoutes=require('./routes/memberRoutes')  
 
 
   //server running status 
   database.connect();
 
-  const PORT = process.env.PORT || 5001;
+  const PORT = process.env.PORT || 5002;
 
   const JWT_SECRET = process.env.JWT_SECRET;
 
-  app.listen(PORT,()=>{
-    console.log(`App is running ar ${PORT}`);
-  })
 
   app.use((req, res, next) => {
     console.log(req.headers);
@@ -48,106 +45,68 @@
 
 
     app.use('/api/auth', authRoutes);
-      app.use("/api/event", eventRoutes);
+    app.use("/api/event", eventRoutes);
+    app.use("/api/members",memberRoutes);
 
 
 
 
 
 
+    app.listen(PORT,()=>{
+      console.log(`App is running ar ${PORT}`);
+    })
 
 
 
+  
 
-  //forgot password route
-
-
-  // app.post("/forgot-password", async (req, res) => {
-  //   const { email } = req.body;
+  // app.get("/reset-password/:id/:token", async (req, res) => {
+  //   const { id, token } = req.params;
+  //   console.log(req.params);
+  //   const oldUser = await User.findOne({ _id: id });
+  //   if (!oldUser) {
+  //     return res.json({ status: "User Not Exists!!" });
+  //   }
+  //   const secret = JWT_SECRET + oldUser.password;
   //   try {
-  //     const oldUser = await User.findOne({ email });
-  //     if (!oldUser) {
-  //       return res.json({ status: "User Not Exists!!" });
-  //     }
-  //     const secret = JWT_SECRET + oldUser.password;
-  //     const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
-  //       expiresIn: "1hr",
-  //     });
-  //     const link = `http://localhost:5001/reset-password/${oldUser._id}/${token}`;
-  //     var transporter = nodemailer.createTransport({
-  //       service: "gmail",
-  //       auth: {
-  //         user: "testingpurpose857@gmail.com",
-  //         pass: "ujlfuxowrfrdhopl",
-  //       },
-  //     });
-
-  //     var mailOptions = {
-  //       from: "scbcordinaters@gmail.com",
-  //       to: req.body.email,
-  //       subject: "Password Reset",
-  //       text: link,
-  //     };
-
-  //     transporter.sendMail(mailOptions, function (error, info) {
-  //       if (error) {
-  //         console.log(error);
-  //       } else {
-  //         console.log("Email sent: " + info.response);
-  //       }
-  //     });
-  //     console.log(link);
-  //   } catch (error) { }
+  //     const verify = jwt.verify(token, secret);
+  //     res.render("index", { email: verify.email, status: "Not Verified" });
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.send("Not Verified");
+  //   }
   // });
 
-  //reset password route
+  // app.post("/reset-password/:id/:token", async (req, res) => {
+  //   const { id, token } = req.params;
+  //   const { password } = req.body;
 
-  app.get("/reset-password/:id/:token", async (req, res) => {
-    const { id, token } = req.params;
-    console.log(req.params);
-    const oldUser = await User.findOne({ _id: id });
-    if (!oldUser) {
-      return res.json({ status: "User Not Exists!!" });
-    }
-    const secret = JWT_SECRET + oldUser.password;
-    try {
-      const verify = jwt.verify(token, secret);
-      res.render("index", { email: verify.email, status: "Not Verified" });
-    } catch (error) {
-      console.log(error);
-      res.send("Not Verified");
-    }
-  });
+  //   const oldUser = await User.findOne({ _id: id });
+  //   if (!oldUser) {
+  //     return res.json({ status: "User Not Exists!!" });
+  //   }
+  //   const secret = JWT_SECRET + oldUser.password;
+  //   try {
+  //     const verify = jwt.verify(token, secret);
+  //     const encryptedPassword = await bcrypt.hash(password, 10);
+  //     await User.updateOne(
+  //       {
+  //         _id: id,
+  //       },
+  //       {
+  //         $set: {
+  //           password: encryptedPassword,
+  //         },
+  //       }
+  //     );
 
-  app.post("/reset-password/:id/:token", async (req, res) => {
-    const { id, token } = req.params;
-    const { password } = req.body;
-
-    const oldUser = await User.findOne({ _id: id });
-    if (!oldUser) {
-      return res.json({ status: "User Not Exists!!" });
-    }
-    const secret = JWT_SECRET + oldUser.password;
-    try {
-      const verify = jwt.verify(token, secret);
-      const encryptedPassword = await bcrypt.hash(password, 10);
-      await User.updateOne(
-        {
-          _id: id,
-        },
-        {
-          $set: {
-            password: encryptedPassword,
-          },
-        }
-      );
-
-      res.send({ email: verify.email, status: "verified" });
-    } catch (error) {
-      console.log(error);
-      res.json({ status: "Something Went Wrong" });
-    }
-  });
+  //     res.send({ email: verify.email, status: "verified" });
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.json({ status: "Something Went Wrong" });
+  //   }
+  // });
 
   //admin routes 
 
