@@ -1,34 +1,34 @@
 # KLUBB - Club Management System
+## Club Website Development Project
 
-## Quick Start
-```bash
-# Install dependencies for backend
-cd backend
-npm install
+### Submitted by:
+[Your Name]
+[Your Roll Number]
+MCA 2nd Year
 
-# Install dependencies for frontend
-cd ../frontend
-npm install
-
-# Start backend server
-cd ../backend
-npm start
-
-# Start frontend development server
-cd ../frontend
-npm start
-```
+### Under the guidance of:
+Dr. Lt. Nidhi Gupta
+Department of Computer Applications
+National Institute of Technology, Kurukshetra
 
 ## Project Overview
-KLUBB is a web-based club management system that helps manage club activities, members, events, and attendance. It provides features for both administrators and club members to efficiently handle club operations.
+KLUBB is a comprehensive web-based club management system developed for the Institute Innovation Council (IIC) at NIT Kurukshetra. The system facilitates efficient management of club activities, members, events, and attendance through a user-friendly interface.
 
-## Features
+## Problem Statement
+The existing club management system at IIC faced several challenges:
+- Manual attendance tracking
+- Inefficient event management
+- Lack of centralized member database
+- Difficulty in communication
+- No real-time updates
+- Limited reporting capabilities
 
-### Member Management
-- Member registration and login
-- Profile management
-- Unique roll number and email validation
-- Secure password handling
+## Objectives
+1. **Primary Objectives**
+   - Develop a centralized club management system
+   - Implement automated attendance tracking
+   - Create an efficient event management system
+   - Establish secure member authentication
 
 ### Event Management
 - Create and manage events
@@ -47,7 +47,6 @@ KLUBB is a web-based club management system that helps manage club activities, m
 - Member management
 - Event creation and management
 - Attendance tracking
-- Notification system
 
 ## Technical Stack
 
@@ -110,3 +109,127 @@ KLUBB/
 
 ## License
 This project is licensed under the ISC License. 
+
+
+AST: 
+
+├── Frontend (React)
+│   ├── Components
+│   │   ├── UI Components
+│   │   ├── Pages
+│   │   └── Features
+│   ├── Hooks
+│   └── Utils
+│
+└── Backend (Node.js)
+    ├── Routes
+    ├── Controllers
+    ├── Models
+    └── Middleware
+```
+
+### Technology Stack
+
+#### Frontend
+- **Framework**: React.js
+- **State Management**: React Hooks
+- **Routing**: React Router
+- **UI Components**: Custom Components
+- **API Integration**: Axios
+- **Styling**: CSS3, Responsive Design
+
+#### Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB
+- **ORM**: Mongoose
+- **Authentication**: JWT
+- **File Storage**: Cloudinary
+- **Email Service**: Nodemailer
+
+## Key Features
+
+### 1. Member Management
+- Secure registration and login system
+- Profile management with roll number validation
+- Role-based access control
+- Member status tracking
+
+### 2. Event Management
+- Event creation and scheduling
+- Automated event registration
+- Event calendar integration
+- Event poster management
+- Attendance tracking
+
+### 3. Attendance System
+- Automated attendance marking
+- Real-time attendance tracking
+- Attendance reports generation
+- Member participation analytics
+
+### 4. Admin Dashboard
+- Comprehensive member management
+- Event oversight
+- Attendance monitoring
+- System configuration
+- Report generation
+
+## Implementation Details
+
+### Database Schema
+```
+User {
+  name: String,
+  email: String,
+  rollNumber: String,
+  password: String,
+  role: String,
+  status: String
+}
+
+Event {
+  title: String,
+  description: String,
+  date: Date,
+  venue: String,
+  organizer: String,
+  attendees: [User]
+}
+
+
+### API Endpoints
+```
+Authentication:
+POST   /api/auth/register
+POST   /api/auth/login
+GET    /api/auth/profile
+
+Events:
+GET    /api/events
+POST   /api/events
+PUT    /api/events/:id
+DELETE /api/events/:id
+
+Attendance:
+POST   /api/attendance/mark
+GET    /api/attendance/report
+```
+
+# Acknowledgements
+
+I would like to express my sincere gratitude to all those who have contributed to the successful completion of this project. Special thanks to my supervisor for their invaluable guidance and support throughout the research process. I am also grateful to my colleagues and friends for their encouragement and assistance.
+
+# Abstract
+
+## Conclusion
+The KLUBB system successfully addresses the club management needs of IIC at NIT Kurukshetra. It provides a robust, secure, and user-friendly platform for managing club activities, members, and events. The system's modular architecture allows for future enhancements and scalability.
+
+## References
+1. React Documentation
+2. Node.js Documentation
+3. MongoDB Documentation
+4. Express.js Documentation
+5. JWT Authentication Guide
+6. Cloudinary Documentation
+7. AI tools
