@@ -6,7 +6,7 @@ import './Developers.css';
 const Developers = () => {
   return (
     <div className="developers-container">
-      <h1 className="developers-title">Developers</h1>
+      <h1 className="title">Developers</h1>
       <div className="developers-grid">
         {developers.map((developer, index) => (
           <Card 

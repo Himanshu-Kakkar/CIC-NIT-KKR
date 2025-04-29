@@ -144,27 +144,6 @@
   gap: 12px;
 }
 
-.icon-button {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-.icon-button:hover {
-  background: linear-gradient(135deg, #3498db, #8e44ad);
-  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
-  transform: translateY(-2px);
-}
-
 /* Admin Login Button */
 .admin-login-btn {
   display: flex;
@@ -282,4 +261,15 @@
   .logout-btn span {
     display: none;
   }
+}
+
+/* Remove the custom admin dashboard link styles */
+.admin-dashboard-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-dashboard-link svg {
+  font-size: 1.1rem;
 }

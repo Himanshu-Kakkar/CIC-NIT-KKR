@@ -91,7 +91,7 @@ const EventsPage = () => {
 
   return (
     <div className="events-container">
-      <h2 className="events-heading">Upcoming Events</h2>
+      <h2 className="title">Upcoming Events</h2>
       <div className="card-grid">
         {events.slice(0, displayCount).map((event) => (
           <div className="event-card" key={event._id}>

@@ -9,7 +9,7 @@ const Clubpage = () => {
   
   return (
     <div className="clubpage-container">
-      <div className="clubpage-header">
+      <div className="title">
         <h1>Clubs</h1>
       </div>
 

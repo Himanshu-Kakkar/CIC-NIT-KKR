@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBell,
   faSignOutAlt,
   faUserShield,
+  faDashboard,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { logo } from "../../Data/data";
@@ -11,10 +12,22 @@ import "./NavBar.css";
 
 function Navbar() {
   const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  // Check if user is admin on component mount
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      // You might want to verify the token and check admin status from your backend
+      // For now, we'll just check if the token exists
+      setIsAdmin(true);
+    }
+  }, []);
 
   // Handle logout functionality
   const HandleLogout = () => {
     localStorage.removeItem("token"); // Remove token from localStorage
+    setIsAdmin(false); // Reset admin status
     navigate("/Adminlogin"); // Redirect to login page
   };
 
@@ -54,15 +67,18 @@ function Navbar() {
             <li>
               <a href="/developers">Developer</a>
             </li>
-            {/* <li>
-              <a href="/admin/dashboard">Dashboard</a>
-            </li> */}
+            {isAdmin && (
+              <li>
+                <a href="/admin/dashboard">
+
+                  <span>Dashboard</span>
+                </a>
+              </li>
+            )}
           </ul>
         </nav>
         <div className="nav-actions">
-          <button className="icon-button">
-            <FontAwesomeIcon icon={faBell} />
-          </button>
+
 
           {!isLoggedIn ? (
             <a href="/Adminlogin" className="admin-login-btn">

@@ -47,7 +47,7 @@ const ContactUs = () => {
     <div className="contact-us-container">
       <main className="main-content">
         <div className="team-section">
-          <h2 className="section-subtitle">Faculty Incharge of Council</h2>
+          <h2 className="title">Faculty Incharge of Council</h2>
           <div className="team-grid-container">
             <button className="nav-arrow left" onClick={prevFaculty}>
               <FaChevronLeft />
@@ -64,7 +64,7 @@ const ContactUs = () => {
         </div>
 
         <div className="team-section">
-          <h2 className="section-subtitle">Conveners</h2>
+          <h2 className="title">Conveners</h2>
           <div className="team-grid-container">
             <button className="nav-arrow left" onClick={prevConvener}>
               <FaChevronLeft />
