@@ -1,90 +1,82 @@
-import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBell,
-  faSignOutAlt,
-  faUserShield,
-  faDashboard,
-} from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
-import { logo } from "../../Data/data";
-import "./NavBar.css";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt, faUserShield, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate, NavLink } from 'react-router-dom';
+import { logo } from '../../Data/data';
+import './NavBar.css';
 
 function Navbar() {
   const navigate = useNavigate();
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  // Check if user is admin on component mount
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      // You might want to verify the token and check admin status from your backend
-      // For now, we'll just check if the token exists
-      setIsAdmin(true);
-    }
-  }, []);
 
   // Handle logout functionality
   const HandleLogout = () => {
-    localStorage.removeItem("token"); // Remove token from localStorage
-    setIsAdmin(false); // Reset admin status
-    navigate("/Adminlogin"); // Redirect to login page
+    localStorage.removeItem('token'); // Remove token from localStorage
+    localStorage.removeItem('role');  // Also clear role
+    navigate("/login"); // Redirect to login page
   };
 
-  // Check if the user is logged in by looking for the token
-  const isLoggedIn = localStorage.getItem("token");
+  const isLoggedIn = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
 
   return (
     <div className="navbar-container">
       <header className="navbar">
-        {/* inside navbar header */}
         <div className="logo">
-          <a
-            href="https://nitkkr.ac.in"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://nitkkr.ac.in" target="_blank" rel="noopener noreferrer">
             <img src={logo[0].image} alt="NIT KKR Logo" />
           </a>
         </div>
+
         <nav className="nav-links">
           <ul>
             <li>
-              <a href="/">Home</a>
+              <NavLink to="/" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                Home
+              </NavLink>
             </li>
             <li>
-              <a href="/clubs">Clubs</a>
+              <NavLink to="/clubs" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                Clubs
+              </NavLink>
             </li>
             <li>
-              <a href="/events">Events</a>
+              <NavLink to="/events" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                Events
+              </NavLink>
             </li>
             <li>
-              <a href="/contact">Contact</a>
+              <NavLink to="/contact" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                Contact
+              </NavLink>
             </li>
             <li>
-              <a href="/pastevents">Gallery</a>
+              <NavLink to="/pastevents" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                Gallery
+              </NavLink>
             </li>
             <li>
-              <a href="/developers">Developer</a>
+              <NavLink to="/developers" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                Developer
+              </NavLink>
             </li>
-            {isAdmin && (
-              <li>
-                <a href="/admin/dashboard">
-
-                  <span>Dashboard</span>
-                </a>
-              </li>
-            )}
           </ul>
         </nav>
+
+        {isLoggedIn && (
+          <NavLink to="/admin/dashboard" className="admin-dashboard-btn">
+            <FontAwesomeIcon icon={faTachometerAlt} />
+            <span style={{ marginLeft: "5px" }}>Dashboard</span>
+          </NavLink>
+        )}
+
         <div className="nav-actions">
-
-
           {!isLoggedIn ? (
-            <a href="/Adminlogin" className="admin-login-btn">
-              <FontAwesomeIcon icon={faUserShield} />
-              <span>Admin</span>
-            </a>
+            !role || role === "member" ? (
+              <a href="/login" className="admin-login-btn">
+                <FontAwesomeIcon icon={faUserShield} />
+                <span>Login</span>
+              </a>
+            ) : null
           ) : (
             <button className="logout-btn" onClick={HandleLogout}>
               <FontAwesomeIcon icon={faSignOutAlt} />

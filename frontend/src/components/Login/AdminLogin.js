@@ -22,9 +22,10 @@ function AdminLogin() {
 
     const data = { email, password };
 
-    axios.post('http://localhost:5002/api/auth/adminlogin', data)
+    axios.post('http://localhost:5001/api/auth/adminlogin', data)
       .then((res) => {
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('role', 'admin'); 
         window.alert("Login Successful");
         navigate("/admin/dashboard");
       })
@@ -37,7 +38,7 @@ function AdminLogin() {
   const handleForgotPassword = (event) => {
     event.preventDefault();
 
-    axios.post('http://localhost:5002/api/auth/forgotPassword', { email })
+    axios.post('http://localhost:5001/api/auth/forgotPassword', { email })
       .then((res) => {
         alert("Reset link sent to your email");
         setShowForm('signin');
@@ -65,7 +66,6 @@ function AdminLogin() {
                   className="input"
                   value={email}
                   onChange={handleEmailChange}
-                  placeholder="Enter your email"
                 />
               </div>
               <div className="group">
@@ -76,7 +76,6 @@ function AdminLogin() {
                   className="input"
                   value={password}
                   onChange={handlePasswordChange}
-                  placeholder="Enter your password"
                 />
               </div>
               <div className="group">
@@ -97,15 +96,13 @@ function AdminLogin() {
           ) : (
             <div className="sign-in-htm">
               <div className="group">
-                <label htmlFor="email" className="label">Email</label>
-
+                <label htmlFor="email" className="label">Enter your email</label>
                 <input
                   id="email"
                   type="text"
                   className="input"
                   value={email}
                   onChange={handleEmailChange}
-                  placeholder="Enter your email"
                 />
               </div>
               <div className="group">

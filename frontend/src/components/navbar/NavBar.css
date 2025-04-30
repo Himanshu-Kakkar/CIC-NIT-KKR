@@ -64,6 +64,26 @@
   position: relative;
 }
 
+/* Active nav link with white underline */
+.nav-links a.active {
+  color: white;
+  font-weight: 600;
+  position: relative;
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 75%;
+  height: 3px;
+  background-color: white;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
 /* Hover effect with gradient */
 .nav-links a:hover {
   background: linear-gradient(135deg, #3498db, #8e44ad);
@@ -144,6 +164,27 @@
   gap: 12px;
 }
 
+.icon-button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.icon-button:hover {
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+  transform: translateY(-2px);
+}
+
 /* Admin Login Button */
 .admin-login-btn {
   display: flex;
@@ -198,7 +239,82 @@
   cursor: pointer;
 }
 
-/* Responsive adjustments */
+/* Admin Dashboard Button - Improved Styling */
+.admin-dashboard-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #3498db, #2c3e50); /* More vibrant gradient matching navbar theme */
+  color: white;
+  padding: 9px 20px;
+  border-radius: 8px; /* Match other UI elements' roundness */
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  margin-right: 15px; 
+  overflow: hidden;
+}
+
+/* Add subtle shine effect */
+.admin-dashboard-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+  z-index: 1;
+}
+
+.admin-dashboard-btn:hover::before {
+  left: 100%;
+}
+
+.admin-dashboard-btn:hover {
+  background: linear-gradient(135deg, #3498db, #8e44ad); /* Matching hover effect from navbar */
+  box-shadow: 0 6px 18px rgba(52, 152, 219, 0.25);
+  transform: translateY(-3px);
+}
+
+.admin-dashboard-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(52, 152, 219, 0.2);
+}
+
+.admin-dashboard-btn svg {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.admin-dashboard-btn:hover svg {
+  transform: rotate(15deg);
+}
+
+/* Add a subtle pulsing effect for the dashboard icon */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.admin-dashboard-btn svg {
+  animation: pulse 2s infinite;
+}
+
+/* Responsive styling */
 @media (max-width: 992px) {
   .navbar-container {
     width: 95%;
@@ -207,6 +323,10 @@
   .nav-links a {
     padding: 0.6rem 0.8rem;
     font-size: 0.9rem;
+  }
+  
+  .admin-dashboard-btn {
+    padding: 8px 16px;
   }
 }
 
@@ -257,19 +377,29 @@
     padding: 0.8rem 1rem;
   }
   
+  /* Maintain active state indicator in mobile view */
+  .nav-links a.active::after {
+    bottom: -2px;
+    width: 50%;
+  }
+  
   .admin-login-btn span,
   .logout-btn span {
     display: none;
   }
-}
-
-/* Remove the custom admin dashboard link styles */
-.admin-dashboard-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.admin-dashboard-link svg {
-  font-size: 1.1rem;
+  
+  .admin-dashboard-btn {
+    padding: 7px 14px;
+    font-size: 0.9rem;
+    margin-left: 5px;
+  }
+  
+  .admin-dashboard-btn span {
+    display: none; /* Hide text on small screens */
+  }
+  
+  .admin-dashboard-btn svg {
+    margin: 0;
+    font-size: 1.1rem;
+  }
 }

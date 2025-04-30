@@ -19,6 +19,10 @@ const memberSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    default: "member", // ✅ Yeh default admin set kar de
+  }
 });
 
 const Member = mongoose.model("Member", memberSchema);

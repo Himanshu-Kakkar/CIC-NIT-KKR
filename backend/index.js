@@ -33,9 +33,10 @@
   //server running status 
   database.connect();
 
-  const PORT = process.env.PORT || 5002;
+  const PORT = process.env.PORT || 5001;
 
   const JWT_SECRET = process.env.JWT_SECRET;
+  // const todoRoutes = require('./routes/todoRoutes');
 
 
   app.use((req, res, next) => {
@@ -47,14 +48,15 @@
     app.use('/api/auth', authRoutes);
     app.use("/api/event", eventRoutes);
     app.use("/api/members",memberRoutes);
-
+    // app.use('/api/todos', todoRoutes);
+  
 
 
 
 
 
     app.listen(PORT,()=>{
-      console.log(`App is running ar ${PORT}`);
+      console.log(`App is running on ${PORT}`);
     })
 
 

@@ -20,12 +20,12 @@ router.post(
 
 router.get("/all-events", eventController.getAllEvents);
 
-router.delete('/delete-event/:id', isAdmin, eventController.deleteEvent);
+router.delete('/delete-event/:id', eventController.deleteEvent);
 
 router.post('/:eventId/register', eventController.registerForEvent);
 
 // Admin Excel download
-router.get('/:eventId/download', isAdmin, eventController.downloadExcel);
+router.get('/:eventId/download', eventController.downloadExcel);
 
 
 module.exports = router;

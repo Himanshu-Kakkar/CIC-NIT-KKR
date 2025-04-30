@@ -1,4 +1,3 @@
-// HomePage.js
 import React from 'react';
 import './HomePage.css';
 import { useNavigate, Link } from 'react-router-dom';

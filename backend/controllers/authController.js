@@ -183,7 +183,7 @@ exports.userData = async (req, res) => {
       });
   
       // Link banao reset ke liye
-      const link = `http://localhost:3000/resetPassword/${user._id}/${token}`;
+      const link = `http://localhost:3001/resetPassword/${user._id}/${token}`;
   
       // Mail bhejne ka transporter
       const transporter = nodemailer.createTransport({

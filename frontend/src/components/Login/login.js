@@ -18,10 +18,11 @@ function Login() {
     event.preventDefault();
 
     const data = { email, password };
-    axios.post('http://localhost:5002/api/auth/userlogin', data)
+    axios.post('http://localhost:5001/api/auth/userlogin', data)
       .then((res) => {
         console.log(res);
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('role', 'member');
         navigate("/admin-home");
         window.alert("Login Successfully");
       })
@@ -37,7 +38,7 @@ function Login() {
     }
 
     try {
-      const res = await axios.post('http://localhost:5002/api/auth/forgotPassword', {
+      const res = await axios.post('http://localhost:5001/api/auth/forgotPassword', {
         email: forgotEmail
       });
 
@@ -47,6 +48,7 @@ function Login() {
       setForgotMessage("Failed to send reset link. Please try again.");
     }
   };
+  
 
   return (
     <div className="login-wrap">

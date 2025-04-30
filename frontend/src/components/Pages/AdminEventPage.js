@@ -18,7 +18,7 @@ const AdminEventsPage = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:5002/api/event/all-events");
+      const res = await axios.get("http://localhost:5001/api/event/all-events");
       setEvents(res.data.events);
     } catch (error) {
       console.error("Failed to fetch events:", error);
@@ -40,7 +40,7 @@ const AdminEventsPage = () => {
   const handleAddEvent = async () => {
     if (!title || !endTime || !poster) {
       setNotification({ show: true, message: "Please fill all fields and select a poster image", type: "error" });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
       return;
     }
 
@@ -53,7 +53,7 @@ const AdminEventsPage = () => {
       formData.append("endTime", endTime);
       formData.append("poster", poster);
 
-      await axios.post("http://localhost:5002/api/event/create-event", formData, {
+      await axios.post("http://localhost:5001/api/event/create-event", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           "Authorization": `Bearer ${token}`,
@@ -66,11 +66,11 @@ const AdminEventsPage = () => {
       setPreviewUrl(null);
       fetchEvents();
       setNotification({ show: true, message: "Event added successfully!", type: "success" });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
     } catch (error) {
       console.error("Error adding event:", error);
       setNotification({ show: true, message: error.response?.data?.message || "Failed to add event", type: "error" });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
     } finally {
       setIsLoading(false);
     }
@@ -84,11 +84,11 @@ const AdminEventsPage = () => {
       const token = localStorage.getItem("token");
       if (!token) {
         setNotification({ show: true, message: "Please login to perform this action", type: "error" });
-        setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+        setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
         return;
       }
 
-      await axios.delete(`http://localhost:5002/api/event/delete-event/${id}`, {
+      await axios.delete(`http://localhost:5001/api/event/delete-event/${id}`, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -97,11 +97,11 @@ const AdminEventsPage = () => {
 
       setEvents(events.filter(event => event._id !== id));
       setNotification({ show: true, message: "Event deleted successfully!", type: "success" });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
     } catch (error) {
       console.error("Failed to delete event:", error);
       setNotification({ show: true, message: error.response?.data?.message || "Failed to delete event", type: "error" });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
     }
   };
 
@@ -110,11 +110,11 @@ const AdminEventsPage = () => {
       const token = localStorage.getItem("token");
       if (!token) {
         setNotification({ show: true, message: "Please login to perform this action", type: "error" });
-        setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+        setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
         return;
       }
 
-      const response = await axios.get(`http://localhost:5002/api/event/${eventId}/download`, {
+      const response = await axios.get(`http://localhost:5001/api/event/${eventId}/download`, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -132,11 +132,11 @@ const AdminEventsPage = () => {
       link.remove();
 
       setNotification({ show: true, message: "Download started!", type: "success" });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
     } catch (error) {
       console.error("Failed to download registrations:", error);
       setNotification({ show: true, message: error.response?.data?.message || "Failed to download registrations", type: "error" });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
     }
   };
 
@@ -194,7 +194,7 @@ const AdminEventsPage = () => {
                     <button onClick={() => handleDelete(event._id)} className="delete-btn">Delete</button>
                     <button
                       onClick={() => handleDownload(event._id)}
-                      className="download-btn"
+                      className="download-btnz"
                     >
                       Download Registrations
                     </button>

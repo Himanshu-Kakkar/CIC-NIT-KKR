@@ -1,5 +1,5 @@
 .contact-us-container {
-  background-color: #0d1530; /* Dark background */
+  /* background-color: #0d1530; Dark background */
   color: #F3F4F6;
   min-height: 100vh;
   padding: 2rem 1rem;
@@ -16,7 +16,7 @@
   background-clip: text;
   color: transparent;
 }
-
+/* 
 .section-subtitle {
   font-size: 2rem;
   color: #67a4ff;
@@ -37,8 +37,12 @@
   height: 4px;
   background: linear-gradient(135deg, #4a72cf, #8a65d3);
   border-radius: 2px;
+} */
+.section-subtitle {
+  font-size: 40px;
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 .team-section {
   margin-bottom: 4rem;
 }

@@ -179,23 +179,7 @@ export const clubData = [
     img5: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745442355/S5_obvyvk.png",
     img6: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745442355/S6_ley6w7.png",
   },
-  // {
-  //   id: 12,
-  //   name: "Mexperts",
-  //   description:
-  //     "Bringing technology to life through innovation and collaboration.",
-  //   logoUrl:
-  //     "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745356815/MEperts_safzem.jpg",
-  //   fullDescription:
-  //     "Mexperts is a technical club that organizes hackathons, coding competitions, and technical workshops. The club fosters innovation and provides a platform for students to showcase their technical skills while working on real-world projects and challenges.",
-  //   events: ["Annual Hackathon", "Coding Bootcamps", "Technical Workshops"],
-  //   img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745476124/Mx1_exx1so.jpg",
-  //   img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745476130/Mx2_guj7x5.png",
-  //   img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745476131/Mx3_xnkh3x.png",
-  //   img4: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745478711/Mx4_jxpedi.jpg",
-  //   img5: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745478713/Mx5_ndehow.jpg",
-  //   img6: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745478712/Mx6_v47ak4.jpg",
-  // },
+
 ];
 
 export const pastEvents = {
@@ -286,7 +270,7 @@ export const pastEvents = {
 
 export const facultyMembers = [
   { 
-    name: "Dr.Nidhi Gupta", 
+    name: "Lt. (Dr.) Nidhi Gupta", 
     role: "Faculty In-charge Literary and Debating (LAD)", 
     email: "nidhi.gupta@nitkkr.ac.in",
     phone: "7985275540",
@@ -382,7 +366,6 @@ export const facultyMembers = [
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745690616/awnish_ikszpx.jpg"
   }
 ];
-
 export const logo = [
   {
     name: "Logo",
@@ -432,37 +415,33 @@ export const conveners = [
 export const developers = [
   {
     name: "Nikhil Agrawal",
-    role: "Full Stack Developer",
+    // role: "Full Stack Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745606058/Nikhil_fin_sgfslc.jpg", // You'll need to add images
     email: "agrawalnikhil722@gmail.com",
-    phone: "6266303022",
     linkedin: "https://www.linkedin.com/in/nikhil-agrawal-0221b3211",
     instagram: "https://www.instagram.com/its_me_nick_?igsh=eGFyY2p4a3Brc2Zr"
   },
   {
     name: "Ritk Maheshwari",
-    role: "Frontend Developer",
+    // role: "Frontend Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745606405/ritik_fin2_kqn3ac.png",
     email: "ritikisnamaheshwari2002@gmail.com",
-    phone: "9058058074",
     linkedin: "www.linkedin.com/in/ritik-maheshwari-107551151",
     instagram: "https://www.instagram.com/maheshwari.s.ritik.1810?utm_source=qr&igsh=cGVkcGpnZWF5NWJt"
   },
   {
     name: "Himanshu kakkar",
-    role: "Frontend Developer",
+    // role: "Frontend Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745605360/Kakkar_evm5dy.jpg",
     email: "himanshukakkar917@gmail.com",
-    phone: "8218287307",
     linkedin: "https://www.linkedin.com/in/himanshu-kakkar-8154981b4/",
     instagram: ""
   },
   {
     name: "Kushagra Richhariya",
-    role: "Full Stack Developer",
+    // role: "Full Stack Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745604808/kush_u8s8ht.jpg",
     email: "kushagra00richhriya@gmail.com",
-    phone: "9174064157",
     linkedin: "https://www.linkedin.com/in/kushagra-richhariya-575a1a185",
     instagram: "https://www.instagram.com/kushagra_richhariya_23?igsh=MTV5Zjlkdml1OGFsbA%3D%3D&utm_source=qr"
   }

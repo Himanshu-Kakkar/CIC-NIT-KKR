@@ -42,12 +42,15 @@ const Footer = () => {
       
       <div className="container">
         <div className="footer-content">
-          <div className="footer-links">
-            <a href="#">Home</a>
-            <a href="#">Clubs</a>
-            <a href="#">Events</a>
-            <a href="#">Contact</a>
-          </div>
+          <nav className="footer-nav">
+            <ul className="footer-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="/clubs">Clubs</a></li>
+              <li><a href="/pastevents">Gallery</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/developers">Developers</a></li>
+            </ul>
+          </nav>
           
           {/* Social icons */}
           <div className="social-icons">

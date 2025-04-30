@@ -1,7 +1,7 @@
 .past-events {
   margin-top: 2rem;
   padding: 2rem;
-  background: linear-gradient(135deg, #0d1530 0%, #1a1f3c 100%);
+  /* background: linear-gradient(135deg, #0d1530 0%, #1a1f3c 100%); */
   min-height: 100vh;
   position: relative;
   overflow: hidden;

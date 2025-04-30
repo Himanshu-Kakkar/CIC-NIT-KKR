@@ -13,7 +13,8 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #0d1530; /* Dark blue background */
+  /* background-color: #0d1530; */
+  background-color: #121F36;
   font-family: 'Poppins', sans-serif;
   color: #e2e8f0;
   overflow-x: hidden; /* Prevent horizontal scroll */
@@ -34,7 +35,8 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #0d1530; /* Dark blue background matching the image */
+  /* background-color: #0d1530; */
+  background-color: #121F36;
   text-align: center;
   flex: 1;
 }

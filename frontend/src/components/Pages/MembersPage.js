@@ -18,7 +18,7 @@ const MembersPage = () => {
   const fetchMembers = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5002/api/members", {
+      const res = await axios.get("http://localhost:5001/api/members", {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -31,7 +31,7 @@ const MembersPage = () => {
         message: "Failed to fetch members",
         type: "error"
       });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
     }
   };
 
@@ -44,7 +44,7 @@ const MembersPage = () => {
         message: "Please fill all fields",
         type: "error"
       });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
       return;
     }
 
@@ -54,7 +54,7 @@ const MembersPage = () => {
       const token = localStorage.getItem("token");
       
       await axios.post(
-        "http://localhost:5002/api/members",
+        "http://localhost:5001/api/members",
         {
           name,
           rollNo,
@@ -83,7 +83,7 @@ const MembersPage = () => {
         message: "Member created successfully!",
         type: "success"
       });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
     } catch (error) {
       console.error("Error creating member:", error);
       setNotification({
@@ -91,7 +91,7 @@ const MembersPage = () => {
         message: error.response?.data?.message || "Failed to create member",
         type: "error"
       });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
     } finally {
       setIsLoading(false);
     }
@@ -104,7 +104,7 @@ const MembersPage = () => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.delete(`http://localhost:5002/api/members/${id}`, {
+      await axios.delete(`http://localhost:5001/api/members/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -117,7 +117,7 @@ const MembersPage = () => {
         message: "Member deleted successfully!",
         type: "success"
       });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
     } catch (error) {
       console.error("Failed to delete member:", error);
       setNotification({
@@ -125,7 +125,7 @@ const MembersPage = () => {
         message: "Failed to delete member",
         type: "error"
       });
-      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3000);
+      setTimeout(() => setNotification({ show: false, message: "", type: "" }), 3001);
     }
   };
 

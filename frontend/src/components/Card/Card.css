@@ -161,7 +161,7 @@
 
 /* Add gradient background to the container in ContactUs.css */
 .contact-us-container {
-  background: #0d1530;
+  /* background: #0d1530; */
   min-height: 100vh;
   padding: 2rem 1rem;
 }
