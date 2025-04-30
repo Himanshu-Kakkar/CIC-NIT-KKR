@@ -418,6 +418,8 @@ export const developers = [
     // role: "Full Stack Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745606058/Nikhil_fin_sgfslc.jpg", // You'll need to add images
     email: "agrawalnikhil722@gmail.com",
+    phone: "6266303022",
+
     linkedin: "https://www.linkedin.com/in/nikhil-agrawal-0221b3211",
     instagram: "https://www.instagram.com/its_me_nick_?igsh=eGFyY2p4a3Brc2Zr"
   },
@@ -426,6 +428,7 @@ export const developers = [
     // role: "Frontend Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745606405/ritik_fin2_kqn3ac.png",
     email: "ritikisnamaheshwari2002@gmail.com",
+    phone: "9058058074",
     linkedin: "www.linkedin.com/in/ritik-maheshwari-107551151",
     instagram: "https://www.instagram.com/maheshwari.s.ritik.1810?utm_source=qr&igsh=cGVkcGpnZWF5NWJt"
   },
@@ -434,6 +437,7 @@ export const developers = [
     // role: "Frontend Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745605360/Kakkar_evm5dy.jpg",
     email: "himanshukakkar917@gmail.com",
+    phone: "8218287307",
     linkedin: "https://www.linkedin.com/in/himanshu-kakkar-8154981b4/",
     instagram: ""
   },
@@ -442,6 +446,7 @@ export const developers = [
     // role: "Full Stack Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745604808/kush_u8s8ht.jpg",
     email: "kushagra00richhriya@gmail.com",
+    phone: "9174064157",
     linkedin: "https://www.linkedin.com/in/kushagra-richhariya-575a1a185",
     instagram: "https://www.instagram.com/kushagra_richhariya_23?igsh=MTV5Zjlkdml1OGFsbA%3D%3D&utm_source=qr"
   }
