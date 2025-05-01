@@ -37,6 +37,7 @@ import EventsPage from "./components/Pages/EventPage.js";
 import MembersPage from "./components/Pages/MembersPage.js";
 import AdminEventsPage from "./components/Pages/AdminEventPage.js";
 
+
 export default function App() {
   return (
     <BrowserRouter>

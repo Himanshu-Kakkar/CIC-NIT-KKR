@@ -17,9 +17,9 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
-          <p className="hero-tagline">Explore • Engage • Excel</p>
-          <h1 className="klubb-heading">INSTITUE <br/> INNOVATION <br/>COUNCIL</h1>
-          <p className="portal-tagline">NIT Kurukshetra's Club Portal</p>
+          <h1 className="klubb-heading">KONNECT</h1>
+          <p className="klubb-tagline">NIT Kurukshetra Organisation' Network for Nurturing Events, Clubs and Teams</p>
+          {/* <p className="portal-tagline">NIT Kurukshetra's Club Portal</p> */}
           <button className="cta-button" onClick={() => navigate('/clubs')}>
             Discover Clubs
           </button>
@@ -30,35 +30,35 @@ const HomePage = () => {
     {/* About Section with Side-by-Side Layout */}
 <section className="about">
   <div className="container">
-    <h2 className="section-title">About Us</h2>
+    <h1 className="section-title">About Us</h1>
     <div className="divider"></div>
     
     <div className="about-stats-container">
       <div className="about-text-container">
         <p className="about-description">
-          The Institute Innovation Council (IIC) is at the forefront of nurturing student innovation, technical skills, and leadership. We provide students with the resources and guidance needed to bring their ideas to life through a wide range of technical clubs, teams, and events.
+          KONNECT (NIT Kurukshetra Organisation' Network for Nurturing Events, Clubs and Teams) serves as the central hub for all student-led organizations, clubs, and technical teams at NIT Kurukshetra. We facilitate collaboration, innovation, and growth by connecting students with diverse interests and expertise.
         </p>
         <p className="about-description">
-          With a focus on fostering collaboration and creativity, IIC plays a pivotal role in organizing technical workshops, competitions, and projects. From robotics to artificial intelligence, the council caters to a diverse set of technical interests, making it a hub for student-led innovation.
+          Through our platform, we empower students to discover, join, and contribute to various clubs and teams. From technical clubs to cultural societies, sports teams to entrepreneurship cells, KONNECT brings together the vibrant student community of NIT Kurukshetra under one unified network.
         </p>
       </div>
       
       <div className="stats-grid">
         <div className="stat-card blue-stat">
-          <div className="stat-number">20+</div>
-          <div className="stat-label">Tech Bodies</div>
+          <div className="stat-number">0+</div>
+          <div className="stat-label">Students Connected</div>
         </div>
         <div className="stat-card purple-stat">
-          <div className="stat-number">80+</div>
-          <div className="stat-label">Yearly Events</div>
+          <div className="stat-number">0+</div>
+          <div className="stat-label">Events Organized</div>
         </div>
         <div className="stat-card pink-stat">
-          <div className="stat-number">200+</div>
-          <div className="stat-label">Summer Projects</div>
+          <div className="stat-number">0+</div>
+          <div className="stat-label">Students Volunteers Engaged</div>
         </div>
         <div className="stat-card cyan-stat">
-          <div className="stat-number">10k+</div>
-          <div className="stat-label">Students Catered</div>
+          <div className="stat-number">0+</div>
+          <div className="stat-label">Active Club & Society</div>
         </div>
       </div>
     </div>
@@ -87,10 +87,10 @@ const HomePage = () => {
         <div className="club-logos-grid">
           {headerClubs.map((club) => (
             <Link 
-              to={`/clubs/${club.id}`} 
+              to={`/clubs/${club.id}`}
               key={club.id} 
               className="club-logo-card"
-              onClick={() => window.scrollTo(0, 0)} // Scroll to top when clicking
+              // onClick={() => window.scrollTo( {top: 0, behaviopur: 'smooth'})}
             >
               <div className="logo-circle">
                 <img src={club.logoUrl} alt={club.name} />
