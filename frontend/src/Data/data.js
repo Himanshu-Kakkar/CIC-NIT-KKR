@@ -272,7 +272,7 @@ export const pastEvents = {
 
 export const facultyMembers = [
   { 
-    name: "Lt. (Dr.) Nidhi Gupta", 
+    name: "Dr. Nidhi Gupta", 
     role: "Faculty In-charge Literary and Debating (LAD)", 
     email: "nidhi.gupta@nitkkr.ac.in",
     phone: "7985275540",

@@ -1,285 +1,315 @@
-/* 
-.container {
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+/* Main container to hold navbar + calendar */
+.page-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
-.schedule-calendar {
-  max-width: 800px;
-  height: 600px;
-} */
+/* Assume navbar takes up fixed height */
+.navbar {
+  /* Your navbar styling here */
+  min-height: 60px;
+}
 
-Style for the calendar component
-
-/* .ScheduleCalendar {
+/* Calendar container with reduced size */
+.calendar-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 80vh;
-  border-radius: 14px;
-} */
-
-
-
-.fc-header-toolbar {
-  margin-top: 125px;
-  border-radius: 4px;
-  /* padding-top: 10px; */
-}
-.fc-header-toolbar {
-  background-color: #00c3ff;
-  border: 1px solid hsl(204, 71%, 1%);
-  border-radius: 4px;
-  margin-bottom: 10px;
+  align-items: flex-start;
+  width: 100%;
   padding: 10px;
+  box-sizing: border-box;
+  /* Fill remaining space but don't overflow */
+  flex: 1;
+  overflow: auto;
+}
 
-} 
+.fc {
+  width: 100%;
+  max-width: 75%; /* Reduced from 1200px */
+  background-color: #ffffff;
+  border-radius: 10px; /* Reduced from 14px */
+  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.15);
+  overflow: hidden;
+  margin: 0 auto;
+  /* Set a maximum height */
+  max-height: calc(100vh - 80px); /* Accounting for navbar and some padding */
+}
 
-.fc-toolbar-button {
-  background-color: #0429fd;
-  border: 1px solid #080909;
-  border-radius: 6px;
-  color: #067df4;
+/* More compact header */
+.fc-header-toolbar {
+  background: linear-gradient(135deg, #0057b8, #0095ff);
+  color: white;
+  padding: 8px 10px; /* Reduced padding */
+  border-radius: 10px 10px 0 0;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.fc-toolbar-title {
+  color: white !important;
+  font-size: 1.2rem !important; /* Reduced from 1.5rem */
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Smaller buttons */
+.fc-button-primary {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  border-radius: 6px !important; /* Reduced from 8px */
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 6px 10px !important; /* Reduced padding */
+  transition: all 0.2s ease !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  font-size: 0.85rem !important;
+}
+
+.fc-button-primary:hover {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) !important;
+}
+
+.fc-button-group .fc-button-primary:first-child {
+  border-radius: 6px 0 0 6px !important;
+}
+
+.fc-button-group .fc-button-primary:last-child {
+  border-radius: 0 6px 6px 0 !important;
+}
+
+/* Table header styling - more compact */
+.fc-col-header-cell {
+  background-color: #f0f7ff;
+}
+
+.fc-col-header-cell-cushion {
+  color: #0057b8;
+  font-weight: 600;
+  padding: 8px 0; /* Reduced from 10px */
+  text-decoration: none !important;
+  font-size: 0.9rem; /* Added size */
+}
+
+/* Day cell styling - more compact */
+.fc-daygrid-day-frame {
+  min-height: 40px !important; /* Force day cells to be smaller */
+}
+
+.fc-daygrid-day-number {
+  color: #333;
   font-weight: 500;
-  margin-left: 5px;
-  margin-right: 5px;
-  padding: 0px 10px;
+  text-decoration: none !important;
+  padding: 5px !important; /* Reduced from 8px */
+  font-size: 0.85rem;
 }
 
-.fc-toolbar-button:hover {
-  background-color: hsl(210, 96%, 49%);
-  cursor: pointer;
-}
-
-.fc button:disabled {
-  background-color: #060708;
-  border-color: #080909;
-  color: #020202;
-  cursor: default;
-}
-
-.fc-day-header {
-  /* font-weight: bold; */
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 6px;
-}
-
-.fc-day-grid-event {
-  background-color: #007bff;
-  border: 0;
-  color: #151010;
-  cursor: pointer;
-}
-
-.fc-day-grid-event:hover {
-  background-color: #0069d9;
-}
-
-.fc-event-resizer {
-  background-color: #007bff;
-  border: 0;
-}
-
-.fc-event-resizer:hover {
-  background-color: #0069d9;
-}
-
-/* .fc-event-main {
-  white-space: normal;
-} */
-
+/* Compact events */
 .fc-event {
-  background-color: #057df6;
-  border: 1px solid hsl(210, 8%, 5%);
-  color: #212529;
-  margin-bottom: 5px;
-  padding: 5px;
+  background: linear-gradient(135deg, #0074e4, #0095ff);
+  border: none !important;
+  border-radius: 4px !important; /* Reduced from 6px */
+  color: white !important;
+  padding: 2px 5px !important; /* Reduced padding */
+  margin: 1px 0 !important; /* Reduced margin */
+  font-size: 0.8rem !important; /* Reduced font size */
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 116, 228, 0.2);
+  transition: all 0.2s ease;
 }
 
 .fc-event:hover {
-  background-color: #047af0;
-}
-
-.fc-popover {
-  background-color: hsl(228, 98%, 47%);
-  border: 1px solid hsl(210, 96%, 51%);
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
-  padding: 30px;
-}
-
-/* .fc-popper {
-  z-index: 20000;
-} */
-
-.fc {
-  /* width: 10%; */
-  height: 500px;
-  margin: 0 auto;
-  display: flex;
-  border: 1px solid hsl(204, 71%, 1%);
-  border-radius: 14px;
-
-}
-/* Style for the calendar component */
-.fc .fc-toolbar {
-  background-color: hwb(196 2% 4%);
-  border-radius: 15px;
-  margin-bottom: 20px;
-}
-
-.fc .fc-toolbar button {
-  border: none;
-  background-color: hsl(210, 98%, 48%);
-  color: #333333;
-  border-radius: 15px;
-  padding: 5px 10px;
-  margin-right: 5px;
-  font-size: 8px;
+  transform: scale(1.03); /* Reduced scale effect */
+  box-shadow: 0 2px 5px rgba(0, 116, 228, 0.3);
   cursor: pointer;
+  z-index: 10;
 }
 
-.fc .fc-toolbar button:hover {
-  background-color: hwb(211 1% 3%);
-  padding: 0px;
+.fc-event-main {
+  padding: 1px 2px; /* Reduced padding */
+  white-space: normal !important;
 }
 
-.fc .fc-toolbar button:focus {
-  /* outline: none; */
-  border-radius: 15px;
-  display: flex;
+/* Set default calendar height */
+.fc-view-harness {
+  height: calc(100vh - 150px) !important; /* Adjust based on navbar and toolbar heights */
+  min-height: 300px !important;
+  max-height: 600px !important;
 }
 
-.fc .fc-toolbar .fc-button-active {
-  background-color: rgb(0, 195, 255);
-  color: hsl(210, 94%, 49%);
+/* More events link - smaller */
+.fc-daygrid-more-link {
+  color: #0074e4 !important;
+  font-weight: 600;
+  font-size: 0.75rem; /* Smaller font */
 }
 
-.fc .fc-header-toolbar h2 {
-  margin-top: 10;
-  border-radius: 15px;
+/* More compact time slots for agenda view */
+.fc-timegrid-slot {
+  height: 30px !important; /* Reduced from 40px */
+}.fc-timegrid-slot-label {
+  color: #0057b8;
+  font-weight: 500;
+  font-size: 0.8rem;
 }
 
-.fc .fc-header-toolbar .fc-button-group {
-  margin-right: 10px;
-  border-radius: 15px;
-}
-
-.fc .fc-header-toolbar .fc-button-group:last-child {
-  margin-right: 0;
-}
-
-.fc .fc-header-toolbar .fc-button-group button:first-child {
-  border-radius: 5px 0 0 5px;
-}
-
-.fc .fc-header-toolbar .fc-button-group button:last-child {
-  border-radius: 0 5px 5px 0;
-}
-
-.fc .fc-header-toolbar .fc-button-group button:not(:first-child):not(:last-child) {
-  border-radius: 0;
-}
-
-.fc .fc-event {
-  background-color: #0d76e7;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.fc .fc-event:hover {
-  opacity: 0.8;
-}
-
-.fc .fc-event .fc-title {
-  font-size: 10px;
-  font-weight: 400;
-}
-
-.fc .fc-daygrid-event-harness {
-  margin-top: 5px;
-}
-
-.fc .fc-time-grid .fc-event .fc-time {
-  display: none;
-  font-size: 10px;
-}
-
-/* Style for the add event button */
-.add-event-button {
-  background-color: #007bff;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 8px;
-  cursor: pointer;
-}
-
-.add-event-button:hover {
-  opacity: 0.8;
-}
-.ScheduleCalendar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  border-radius: 15px;
- 
-
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .fc {
+    max-width: 85%;
+  }
+  
+  .fc-toolbar-title {
+    font-size: 1.1rem !important;
+  }
+  
+  .fc-view-harness {
+    max-height: 550px !important;
+  }
 }
 
 @media (max-width: 768px) {
-  tbody{
-    padding-right: 200px;
+  .fc {
+    max-width: 90%;
   }
-.fc {
-width: 100%;
-height: 100%;
-padding-bottom: 50px;
-padding-left: 0px;
-}
-
-.fc-header-toolbar {
-margin-top: 0px;
-}
-
-.fc-header-toolbar .fc-button-group button {
-font-size: 8px;
-padding: 3px 6px;
-}
-
-.fc .fc-event .fc-title {
-font-size: 8px;
-}
-
-.add-event-button {
-padding: 8px 16px;
-font-size: 12px;
-}
-}
-
-.fc-event:hover {
-  /* change the background color on hover */
-  cursor: pointer; /* change the cursor to a pointer on hover */
-  transform: scale(2.1);
-}
-
-.cal{
-  display: flex;
-  width: 110%;
-  height: 80%;
-  align-items: center;
-  justify-content: center;
-  margin-top: 100px;
-  margin-bottom: 150px;
-  margin-left: 0px;
-  margin-right: 40px;
-  position: fixed;
   
+  .fc-header-toolbar {
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+  }
+  
+  .fc-toolbar-chunk {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 3px 0;
+  }
+  
+  .fc-toolbar-title {
+    font-size: 1rem !important;
+  }
+  
+  .fc-button {
+    padding: 4px 8px !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .fc-view-harness {
+    height: calc(100vh - 180px) !important; /* Adjust for stacked toolbar */
+    max-height: 500px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .fc {
+    max-width: 95%;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .fc-header-toolbar {
+    padding: 5px;
+  }
+  
+  .fc-toolbar-title {
+    font-size: 0.9rem !important;
+  }
+  
+  .fc-col-header-cell-cushion {
+    font-size: 0.75rem;
+    padding: 4px 0;
+  }
+  
+  .fc-daygrid-day-number {
+    font-size: 0.75rem;
+    padding: 3px !important;
+  }
+  
+  .fc-event {
+    font-size: 0.65rem !important;
+    padding: 1px 2px !important;
+  }
+  
+  .fc-view-harness {
+    height: calc(100vh - 170px) !important;
+    min-height: 280px !important;
+    max-height: 450px !important;
+  }
+  
+  /* Change to list view on very small screens */
+  .fc-dayGridMonth-button {
+    display: none !important;
+  }
+  
+  .fc-listMonth-button {
+    display: block !important;
+  }
+}
+
+/* Mobile view optimizations */
+@media (max-width: 480px) {
+  .calendar-container {
+    padding: 5px;
+  }
+  
+  .fc {
+    max-width: 100%;
+    border-radius: 6px;
+  }
+  
+  .fc-header-toolbar {
+    font-size: 0.65rem;
+    padding: 5px;
+  }
+  
+  /* Reorder toolbar chunks for better mobile layout */
+  .fc-toolbar-chunk:nth-child(1) {
+    order: 2;
+  }
+  
+  .fc-toolbar-chunk:nth-child(2) {
+    order: 1;
+    margin-bottom: 5px;
+  }
+  
+  .fc-toolbar-chunk:nth-child(3) {
+    order: 3;
+  }
+  
+  .fc-view-harness {
+    height: calc(100vh - 160px) !important;
+    min-height: 250px !important;
+    max-height: 400px !important;
+  }
+  
+  .fc-daygrid-day-events {
+    min-height: 1em;
+  }
+  
+  /* Use abbreviated day names on very small screens */
+  .fc-day-sun .fc-col-header-cell-cushion::after { content: "Su"; }
+  .fc-day-mon .fc-col-header-cell-cushion::after { content: "Mo"; }
+  .fc-day-tue .fc-col-header-cell-cushion::after { content: "Tu"; }
+  .fc-day-wed .fc-col-header-cell-cushion::after { content: "We"; }
+  .fc-day-thu .fc-col-header-cell-cushion::after { content: "Th"; }
+  .fc-day-fri .fc-col-header-cell-cushion::after { content: "Fr"; }
+  .fc-day-sat .fc-col-header-cell-cushion::after { content: "Sa"; }
+  
+  /* Hide the full day names */
+  .fc-col-header-cell-cushion {
+    font-size: 0; /* Hide original text */
+  }
 }

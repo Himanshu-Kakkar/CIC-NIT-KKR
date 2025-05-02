@@ -17,15 +17,15 @@
     color: var(--text-light);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
-/*   
-  .clubpage-header {
+  
+  /* .clubpage-header {
     text-align: center;
     margin-bottom: 3rem;
     padding-bottom: 1.5rem;
     position: relative;
-  }
+  } */
   
-  .clubpage-header h1 {
+  /* .clubpage-header h1 {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -39,6 +39,7 @@
     color: var(--text-gray);
     font-size: 1.2rem;
   }
+  
   .clubpage-header::after {
     content: '';
     position: absolute;
@@ -49,8 +50,8 @@
     height: 4px;
     background: var(--accent-gradient);
     border-radius: 2px;
-  } */
-  
+  }
+   */
   .club-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

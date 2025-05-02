@@ -4,7 +4,7 @@ const JWT_SECRET =
 module.exports=function(req,res,next){
   try{
     let token=req.header('token')
-    console.log(token)
+
     if(!token){
       return res.status(400).send('Token not found');
     }

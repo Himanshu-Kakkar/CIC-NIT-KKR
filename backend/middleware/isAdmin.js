@@ -11,7 +11,7 @@ module.exports = function isAdmin(req, res, next) {
 
     const token = authHeader.split(" ")[1];
     const decoded = jwt.verify(token, JWT_SECRET);
-    console.log("DECODED",decoded);
+    // console.log("DECODED",decoded);
     if (decoded.role !== "admin") {
       return res.status(403).json({ success: false, message: "Access denied: Not an admin" });
     }

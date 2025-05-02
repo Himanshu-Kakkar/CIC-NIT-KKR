@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const eventSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -15,6 +14,6 @@ const eventSchema = new mongoose.Schema({
   },
 });
 
-const Calendra = mongoose.model('Calendra', eventSchema);
+const Calendar = mongoose.model('Calendar', eventSchema);
 
-module.exports = Calendra;
+module.exports = Calendar;

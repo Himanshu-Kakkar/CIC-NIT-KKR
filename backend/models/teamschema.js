@@ -3,19 +3,24 @@ const Schema = mongoose.Schema;
 
 const teamSchema = new Schema({
   teamNumber: {
-    type: Number,
+    type: String,
     required: true,
-    unique: true
+    unique: true,
+    trim: true  // Trim whitespace
   },
   studentNames: [
     {
-      name: String,
-     
-    },
-    // ... possibly more objects in the attendanceData array
-  ],
+      name: {
+        type: String,
+        required: true,
+        trim: true
+      }
+    }
+  ]
 });
 
-const Team = mongoose.model('Team', teamSchema);
+// Add index for better performance and to ensure uniqueness
+teamSchema.index({ teamNumber: 1 }, { unique: true });
 
+const Team = mongoose.model('Team', teamSchema);
 module.exports = Team;

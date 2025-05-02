@@ -70,7 +70,7 @@ function UnifiedLogin() {
     try {
       const endpoint = activeTab === 'member'
         ? 'http://localhost:5001/api/auth/forgotPassword'
-        : 'http://localhost:5001/api/auth/adminForgotPassword';
+        : 'http://localhost:5001/api/auth/forgotPassword';
 
       const res = await axios.post(endpoint, { email: forgotEmail });
       setForgotMessage("Reset link sent! Please check your email.");

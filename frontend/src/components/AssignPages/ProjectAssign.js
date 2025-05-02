@@ -47,10 +47,10 @@ function TeamPage() {
 
   return (
     <div className="project-assign-container">
-      <h1 className="project-assign-container__heading">Project Page</h1>
+      <h1 className="project-assign-container__heading">Team Assign</h1>
       <form onSubmit={handleFormSubmit} className="project-assign-container__form">
         <div>
-          <label htmlFor="rollnumber">Project Name:</label>
+          <label htmlFor="rollnumber">Work Name:</label>
           <input type="text" id="projectname" name="projectname" value={formValues.projectname} onChange={handleInputChange} />
         </div>
         <div>

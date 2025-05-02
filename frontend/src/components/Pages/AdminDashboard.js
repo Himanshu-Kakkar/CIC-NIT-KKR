@@ -23,7 +23,7 @@ const AdminDashboard = () => {
               Manage Members
             </Link>
           </li>
-          <li className={activeTab === "clubs" ? "active" : ""}>
+          {/* <li className={activeTab === "clubs" ? "active" : ""}>
             <Link to="/admin/dashboard/clubs" onClick={() => setActiveTab("clubs")}>
               Manage Clubs
             </Link>
@@ -31,8 +31,14 @@ const AdminDashboard = () => {
           <li className={activeTab === "reports" ? "active" : ""}>
             <Link to="/admin/dashboard/reports" onClick={() => setActiveTab("reports")}>
               Reports
-            </Link>
+            </Link>      
+          </li> */}
+          <li className={activeTab === "attendance" ? "active" : ""}>
+            <Link to="/admin/dashboard/attendance" onClick={() => setActiveTab("attendance")}>
+             Manage Attendance
+            </Link>      
           </li>
+
         </ul>
       </div>
 

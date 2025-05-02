@@ -45,20 +45,16 @@ function Navbar() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/contact" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
-                Contact
-              </NavLink>
-            </li>
-            <li>
               <NavLink to="/pastevents" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
                 Gallery
               </NavLink>
             </li>
             <li>
-              <NavLink to="/developers" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
-                Developer
+              <NavLink to="/contact" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+                Contact
               </NavLink>
             </li>
+            
           </ul>
         </nav>
 

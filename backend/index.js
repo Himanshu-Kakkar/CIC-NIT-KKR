@@ -6,7 +6,8 @@
   const User = require('./models/studentSchema')
   app.use(cors());
   const bcrypt = require("bcryptjs");
-  const adminCheck = require('./middleware/adminmiddleware')
+  const adminCheck = require('./middleware/Admincheck')
+  const memberCheck=require('./middleware/membermiddleware')
   const tokenCheck = require('./middleware/middleware')
   const attendance = require('./models/attendenceSchema')
   const admin = require('./models/adminSchema')
@@ -16,11 +17,11 @@
   const http = require('http');
   const server = http.createServer(app);
   const io = socketIo(server);
-  const schedule=require('./models/calendarschema')
+  const Calendar = require('./models/calendarschema');
   app.use(express.urlencoded({ extended: false }));
   const jwt = require("jsonwebtoken");
   var nodemailer = require("nodemailer");
-  const attendenceSchema = require("./models/attendenceSchema");
+  const verifyToken=require("./middleware/verifyToken")
   const database = require("./config/database");
   require("dotenv").config();
 
@@ -40,7 +41,7 @@
 
 
   app.use((req, res, next) => {
-    console.log(req.headers);
+    // console.log(req.headers);
     next();
   });
 
@@ -56,124 +57,118 @@
 
 
     app.listen(PORT,()=>{
-      console.log(`App is running on ${PORT}`);
+      console.log(`App is running ar ${PORT}`);
     })
 
 
-
-  
-
-  // app.get("/reset-password/:id/:token", async (req, res) => {
-  //   const { id, token } = req.params;
-  //   console.log(req.params);
-  //   const oldUser = await User.findOne({ _id: id });
-  //   if (!oldUser) {
-  //     return res.json({ status: "User Not Exists!!" });
-  //   }
-  //   const secret = JWT_SECRET + oldUser.password;
-  //   try {
-  //     const verify = jwt.verify(token, secret);
-  //     res.render("index", { email: verify.email, status: "Not Verified" });
-  //   } catch (error) {
-  //     console.log(error);
-  //     res.send("Not Verified");
-  //   }
-  // });
-
-  // app.post("/reset-password/:id/:token", async (req, res) => {
-  //   const { id, token } = req.params;
-  //   const { password } = req.body;
-
-  //   const oldUser = await User.findOne({ _id: id });
-  //   if (!oldUser) {
-  //     return res.json({ status: "User Not Exists!!" });
-  //   }
-  //   const secret = JWT_SECRET + oldUser.password;
-  //   try {
-  //     const verify = jwt.verify(token, secret);
-  //     const encryptedPassword = await bcrypt.hash(password, 10);
-  //     await User.updateOne(
-  //       {
-  //         _id: id,
-  //       },
-  //       {
-  //         $set: {
-  //           password: encryptedPassword,
-  //         },
-  //       }
-  //     );
-
-  //     res.send({ email: verify.email, status: "verified" });
-  //   } catch (error) {
-  //     console.log(error);
-  //     res.json({ status: "Something Went Wrong" });
-  //   }
-  // });
-
-  //admin routes 
-
-  // endpoints are : attendence management , student management , notification management , 
-
   // attendence endpoints
-  app.get('/getuser', async (req, res) => {
-    try {
-      const attendances = await User.find({}, { _id: 0, name: 1, status: 1 });
-      res.send({ status: "ok", data: attendances })
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error retrieving attendance data');
-    }
-  });
+  // Routes for attendance management
 
-  app.post("/submit-attendence",adminCheck, async (req, res) => {
-    try {
-      const attendanceData = req.body.attendanceData;
-      const date = new Date(req.body.date);
+// Get all users (students)
+app.get('/getuser', async (req, res) => {
+  try {
+    const attendances = await User.find({}, { _id: 0, name: 1, status: 1 });
+    res.send({ status: "ok", data: attendances });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error retrieving attendance data');
+  }
+});
 
+// Submit attendance for a specific date
+app.post("/submit-attendence", verifyToken, adminCheck, async (req, res) => {
+  // console.log("Accessed by:", req.user);
+  try {
+    const attendanceData = req.body.attendanceData;
+    // console.log("Received attendance data: ", attendanceData);
+    const date = new Date(req.body.date);
+    // console.log("Received date: ", date);
+
+    // Check if attendance already exists for this date
+    const existingAttendance = await attendance.findOne({ date: date });
+
+    if (existingAttendance) {
+      // Update existing attendance record
+      existingAttendance.attendanceData = attendanceData.map(({ name, status }) => ({
+        name,
+        status
+      }));
+      await existingAttendance.save();
+    } else {
+      // Create new attendance record
       const attendanceReport = new attendance({
         attendanceData: attendanceData.map(({ name, status }) => ({
           name,
-          status,
-          date
-        }))
+          status
+        })),
+        date: date
       });
-      attendanceReport.date = date;
       await attendanceReport.save();
-
-
-      res.status(200).json({ message: 'Attendance data saved successfully' });
-
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Error saving attendance data' });
     }
 
+    res.status(200).json({ message: 'Attendance data saved successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Error saving attendance data' });
+  }
+});
 
-  })
+// Get attendance for a specific date
+app.post('/getattendancebydate',verifyToken, adminCheck, async (req, res) => {
+  try {    
+    const requestedDate = new Date(req.body.date);
+    
+    console.log("Requested Date: ", requestedDate);
+   
 
-
-
-  // search for particular attendance 
-
-  app.post('/getattendancebydate', adminCheck, async (req, res) => {
-    try {
-      const requestedDate = req.body.date; // Get the date from the request body
-      const attendanceRecord = await attendance.findOne({ date: requestedDate }); // Find the attendance record for the requested date
-      if (!attendanceRecord) {
-        return res.status(404).send('Attendance data not found for the requested date');
+    // Find attendance for that date with error handling
+    const attendanceRecord = await attendance.findOne({ 
+      date: {
+        $gte: new Date(requestedDate.setHours(0, 0, 0)),
+        $lt: new Date(requestedDate.setHours(23, 59, 59))
       }
-      const data = attendanceRecord.attendanceData.map(ad => ({
-        name: ad.name,
-        status: ad.status
-      }));
-      res.send({ status: "ok", data: data });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error retrieving attendance data');
+    });
+    console.log("Found Attendance Record: ", attendanceRecord);
+    if (!attendanceRecord) {
+      return res.status(404).json({ 
+        status: "error", 
+        message: 'Attendance data not found for the requested date'
+      });
     }
-  });
 
+    const data = attendanceRecord.attendanceData.map(ad => ({
+      name: ad.name,
+      status: ad.status
+    }));
 
+    res.send({ status: "ok", data: data });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ 
+      status: "error", 
+      message: 'Error retrieving attendance data'
+    });
+  }
+});
+
+// Get all attendance dates (for listing available dates)
+app.get('/getattendancedates', verifyToken, adminCheck, async (req, res) => {
+  try {
+    const dates = await attendance.find({}, { date: 1, _id: 0 })
+      .sort({ date: -1 }); // Sort by date descending (newest first)
+    
+    res.send({ 
+      status: "ok", 
+      data: dates.map(item => item.date)
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ 
+      status: "error", 
+      message: 'Error retrieving attendance dates'
+    });
+  }
+});
 
   //notifcation management
 
@@ -290,68 +285,56 @@
 
 
 
-
-
   app.post("/calendarschema", async (req, res) => {
     try {
       const { title, start, end } = req.body;
-      const newCalender = await schedule.create({
-        title,
-        start,
-        end
-      });
-      return res.status(201).json(newCalender);
+      const newCalendarEvent = await Calendar.create({ title, start, end });
+      return res.status(201).json(newCalendarEvent);
     } catch (err) {
       console.error(err);
       return res.status(500).send("Server Error");
     }
   });
-
+  
+  // Get all calendar events
   app.get("/calendarschema", async (req, res) => {
     try {
-      const calendarschema = await Calender.find();
-      return res.status(200).json(calendarschema);
+      const calendarEvents = await Calendar.find();
+      return res.status(200).json(calendarEvents);
     } catch (err) {
       console.error(err);
       return res.status(500).send("Server Error");
     }
   });
-
+  
+  // Update an existing calendar event
   app.put("/calendarschema/:id", async (req, res) => {
     try {
       const { title, start, end } = req.body;
-      const existingCalender = await schedule.findByIdAndUpdate(
+      const updatedEvent = await Calendar.findByIdAndUpdate(
         req.params.id,
         { title, start, end },
         { new: true }
       );
-      if (!existingCalender) {
-        return res.status(404).send("event not found");
-      }
-      return res.status(200).json(existingCalender);
+      if (!updatedEvent) return res.status(404).send("Event not found");
+      return res.status(200).json(updatedEvent);
     } catch (err) {
       console.error(err);
       return res.status(500).send("Server Error");
     }
   });
-
+  
+  // Delete a calendar event
   app.delete("/calendarschema/:id", async (req, res) => {
     try {
-      const existingCalender = await schedule.findByIdAndDelete(
-        req.params.id
-      );
-      if (!existingCalender) {
-        return res.status(404).send("EventS not found");
-      }
-      return res.status(200).send("EventS deleted successfully");
+      const deletedEvent = await Calendar.findByIdAndDelete(req.params.id);
+      if (!deletedEvent) return res.status(404).send("Event not found");
+      return res.status(200).send("Event deleted successfully");
     } catch (err) {
       console.error(err);
       return res.status(500).send("Server Error");
     }
   });
-
-
-
 
   //team routes
   /* 1-->new 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { developers } from '../../Data/data';
 import Card from '../Card/Card';
-
 import './Developers.css';
 
 const Developers = () => {

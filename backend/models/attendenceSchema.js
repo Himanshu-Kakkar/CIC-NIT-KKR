@@ -1,20 +1,34 @@
-const mongoose=require('mongoose')
+// models/Attendance.js
+const mongoose = require('mongoose');
 
-    // Define schema for a single object in the array
-const data = new mongoose.Schema({
-  
-    attendanceData: [
-      {
-        name: String,
-        status: String,
+const attendanceSchema = new mongoose.Schema({
+  attendanceData: [
+    {
+      name: {
+        type: String,
+        required: true
       },
-      // ... possibly more objects in the attendanceData array
-    ],
-    date: Date
+      status: {
+        type: String,
+        enum: ['Present', 'Absent'],
+        required: true
+      }
+    }
+  ],
+  date: {
+    type: Date,
+    required: true,
+    unique: true // Ensure only one attendance record per date
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
-);
+});
 
-;
-      
-  
-module.exports=mongoose.model("attendenceReport",data);
+// Create an index on the date field for faster lookups
+attendanceSchema.index({ date: 1 });
+
+const Attendance = mongoose.model('Attendance', attendanceSchema);
+
+module.exports = Attendance;

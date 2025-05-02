@@ -44,11 +44,17 @@ const ClubForm = ({ onClose, clubName }) => {
     const errors = {};
     if (!formData.fullName) {
       errors.fullName = "Please enter your full name";
+    } else if (!/^[a-zA-Z\s]*$/.test(formData.fullName)) {
+      errors.fullName = "Full name should only contain letters and spaces";
     }
     if (!formData.email) {
       errors.email = "Please enter your email";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = "Please enter a valid email";
+    } else {
+      // More strict email validation
+      const emailRegex = /^[a-zA-Z][a-zA-Z0-9._-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(formData.email)) {
+        errors.email = "Please enter a valid email address (e.g., name@domain.com)";
+      }
     }
     if (!formData.mobileNumber) {
       errors.mobileNumber = "Please enter your mobile number";
@@ -156,6 +162,8 @@ Purpose: ${formData.purpose}`;
               onChange={handleChange}
               className="club-contact-form__input"
               placeholder="Enter your full name"
+              pattern="[A-Za-z\s]*"
+              title="Please enter only letters and spaces"
             />
             {formErrors.fullName && <span className="club-contact-form__error">{formErrors.fullName}</span>}
           </div>

@@ -17,9 +17,9 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-content">
-          <h1 className="klubb-heading">KONNECT</h1>
-          <p className="klubb-tagline">NIT Kurukshetra Organisation' Network for Nurturing Events, Clubs and Teams</p>
-          {/* <p className="portal-tagline">NIT Kurukshetra's Club Portal</p> */}
+          <p className="hero-tagline">Explore • Engage • Excel</p>
+          <h1 className="klubb-heading">CAMPUS<br/> INNOVATION <br/>COUNCIL</h1>
+          <p className="portal-tagline">NIT Kurukshetra's Club Portal</p>
           <button className="cta-button" onClick={() => navigate('/clubs')}>
             Discover Clubs
           </button>
@@ -30,35 +30,35 @@ const HomePage = () => {
     {/* About Section with Side-by-Side Layout */}
 <section className="about">
   <div className="container">
-    <h1 className="section-title">About Us</h1>
+    <h2 className="section-title">About Us</h2>
     <div className="divider"></div>
     
     <div className="about-stats-container">
       <div className="about-text-container">
         <p className="about-description">
-          KONNECT (NIT Kurukshetra Organisation' Network for Nurturing Events, Clubs and Teams) serves as the central hub for all student-led organizations, clubs, and technical teams at NIT Kurukshetra. We facilitate collaboration, innovation, and growth by connecting students with diverse interests and expertise.
+        Welcome to our Club Management platform! We are here to provide clubs with a streamlined, user-friendly solution to manage their members, events, and activities. Our platform allows easy event registrations, member management, and event updates, all in one place. Whether you're managing a sports club, a cultural society, or any other community group, we make it simple to stay organized and connected.
         </p>
         <p className="about-description">
-          Through our platform, we empower students to discover, join, and contribute to various clubs and teams. From technical clubs to cultural societies, sports teams to entrepreneurship cells, KONNECT brings together the vibrant student community of NIT Kurukshetra under one unified network.
+        We focus on making club management more efficient, reducing the administrative workload, and giving members a seamless experience. Join us and take your club to the next level with smart management tools that keep your community engaged and active!.
         </p>
       </div>
       
       <div className="stats-grid">
         <div className="stat-card blue-stat">
-          <div className="stat-number">0+</div>
+          <div className="stat-number">110+</div>
           <div className="stat-label">Students Connected</div>
         </div>
         <div className="stat-card purple-stat">
-          <div className="stat-number">0+</div>
-          <div className="stat-label">Events Organized</div>
+          <div className="stat-number">35+</div>
+          <div className="stat-label">Events Organised</div>
         </div>
         <div className="stat-card pink-stat">
-          <div className="stat-number">0+</div>
+          <div className="stat-number">70+</div>
           <div className="stat-label">Students Volunteers Engaged</div>
         </div>
         <div className="stat-card cyan-stat">
-          <div className="stat-number">0+</div>
-          <div className="stat-label">Active Club & Society</div>
+          <div className="stat-number">11+</div>
+          <div className="stat-label">Active Clubs</div>
         </div>
       </div>
     </div>
@@ -87,10 +87,10 @@ const HomePage = () => {
         <div className="club-logos-grid">
           {headerClubs.map((club) => (
             <Link 
-              to={`/clubs/${club.id}`}
+              to={`/clubs/${club.id}`} 
               key={club.id} 
               className="club-logo-card"
-              // onClick={() => window.scrollTo( {top: 0, behaviopur: 'smooth'})}
+              onClick={() => window.scrollTo(0, 0)} // Scroll to top when clicking
             >
               <div className="logo-circle">
                 <img src={club.logoUrl} alt={club.name} />

@@ -7,17 +7,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+#root, .App {
+  background-color: #121f36;
+}
 
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  /* background-color: #0d1530; */
-  background-color: #121F36;
+ /* Dark blue background */
   font-family: 'Poppins', sans-serif;
   color: #e2e8f0;
   overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-y:auto
 }
 
 /* Root element - covers full screen */
@@ -35,8 +38,7 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: #0d1530; */
-  background-color: #121F36;
+  background-color: #121f36; /* Dark blue background matching the image */
   text-align: center;
   flex: 1;
 }
