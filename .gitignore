@@ -49,4 +49,37 @@ yarn-error.log*
 .env.local
 .env.development.local
 .env.test.local
-.env.production.local 
+.env.production.local
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+
+# Build directories
+/out
+/.next
+/.nuxt
+/.output
+
+# Cache directories
+.cache/
+.npm/
+.eslintcache
+
+# Unused assets and development files
+src/Assets/
+src/assets/
+*.bak
+*.swp
+*.swo
+*~
+
+# Local media files (use CDN instead)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+*.ico
+*.webp 
