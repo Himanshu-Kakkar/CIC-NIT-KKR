@@ -18,13 +18,13 @@ CIC (Campus Innovation Council) is a comprehensive web-based club management sys
 ### Home Page
 The main landing page of CIC showcasing the club's activities and upcoming events.
 <div align="center">
-  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282711/home_f5rrqs.png" alt="CIC home" width="300"/>
+  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282711/home_f5rrqs.png" alt="CIC home" width="500"/>
 </div>
 
 ### Developers Section
 Meet the talented team behind the development of CIC platform.
 <div align="center">
-  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282710/develpoers_ti6tkh.png" alt="developers" width="300"/>
+  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282710/develpoers_ti6tkh.png" alt="developers" width="500"/>
 </div>
 
 ## Key Features
@@ -39,31 +39,31 @@ Meet the talented team behind the development of CIC platform.
 ### Event Registration
 Easy and intuitive event registration system for members.
 <div align="center">
-  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282715/register_qai4fz.png" alt="Register for events" width="300"/>
+  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282715/register_qai4fz.png" alt="Register for events" width="500"/>
 </div>
 
 ### Attendance Management
 Comprehensive attendance tracking system for events and meetings.
 <div align="center">
-  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282709/attendence_cpqbvg.png" alt="Admin-Dashboard" width="300"/>
+  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282709/attendence_cpqbvg.png" alt="Admin-Dashboard" width="500"/>
 </div>
 
 ### Admin Dashboard
 Centralized control panel for administrators to manage all aspects of the platform.
 <div align="center">
-  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282709/admin-dash_wjbb2p.png" alt="Manage-Attendence" width="300"/>
+  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282709/admin-dash_wjbb2p.png" alt="Manage-Attendence" width="500"/>
 </div>
 
 ### Member Management
 Efficient system for managing member profiles and permissions.
 <div align="center">
-  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282711/member-mngmnt_r4cs8v.png" alt="Manage-Members" width="300"/>
+  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282711/member-mngmnt_r4cs8v.png" alt="Manage-Members" width="500"/>
 </div>
 
 ### Member Dashboard
 Personalized dashboard for members to track their activities and registrations.
 <div align="center">
-  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282711/member-dash_diztxi.png" alt="Members-dashboard" width="300"/>
+  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282711/member-dash_diztxi.png" alt="Members-dashboard" width="500"/>
 </div>
 
 ## Tech Stack
