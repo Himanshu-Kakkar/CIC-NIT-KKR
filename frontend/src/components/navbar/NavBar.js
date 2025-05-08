@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt, faUserShield, faTachometerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faUserShield, faTachometerAlt, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { logo } from '../../Data/data';
 import './NavBar.css';
 
 function Navbar() {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
 
   // Handle logout functionality
   const HandleLogout = () => {
@@ -14,6 +17,27 @@ function Navbar() {
     localStorage.removeItem('role');  // Also clear role
     navigate("/login"); // Redirect to login page
   };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMenuOpen && 
+          menuRef.current && 
+          !menuRef.current.contains(event.target) && 
+          buttonRef.current && 
+          !buttonRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   const isLoggedIn = localStorage.getItem('token');
   const role = localStorage.getItem('role');
@@ -27,45 +51,69 @@ function Navbar() {
           </a>
         </div>
 
-        <nav className="nav-links">
+        <nav ref={menuRef} className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
           <ul>
             <li>
-              <NavLink to="/" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+              <NavLink to="/" className={({isActive}) => isActive ? "nav-link active" : "nav-link"} onClick={() => setIsMenuOpen(false)}>
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/clubs" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+              <NavLink to="/clubs" className={({isActive}) => isActive ? "nav-link active" : "nav-link"} onClick={() => setIsMenuOpen(false)}>
                 Clubs
               </NavLink>
             </li>
             <li>
-              <NavLink to="/events" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+              <NavLink to="/events" className={({isActive}) => isActive ? "nav-link active" : "nav-link"} onClick={() => setIsMenuOpen(false)}>
                 Events
               </NavLink>
             </li>
             <li>
-              <NavLink to="/pastevents" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+              <NavLink to="/pastevents" className={({isActive}) => isActive ? "nav-link active" : "nav-link"} onClick={() => setIsMenuOpen(false)}>
                 Gallery
               </NavLink>
             </li>
             <li>
-              <NavLink to="/contact" className={({isActive}) => isActive ? "nav-link active" : "nav-link"}>
+              <NavLink to="/contact" className={({isActive}) => isActive ? "nav-link active" : "nav-link"} onClick={() => setIsMenuOpen(false)}>
                 Contact
               </NavLink>
             </li>
-            
+            {/* Mobile Menu Auth Buttons */}
+            <li className="mobile-auth-buttons">
+              {isLoggedIn && (
+                <NavLink to="/admin/dashboard" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
+                  <FontAwesomeIcon icon={faTachometerAlt} />
+                  <span>Dashboard</span>
+                </NavLink>
+              )}
+              {!isLoggedIn ? (
+                !role || role === "member" ? (
+                  <a href="/login" className="mobile-nav-link" onClick={() => setIsMenuOpen(false)}>
+                    <FontAwesomeIcon icon={faUserShield} />
+                    <span>Login</span>
+                  </a>
+                ) : null
+              ) : (
+                <button className="mobile-nav-link" onClick={() => {
+                  HandleLogout();
+                  setIsMenuOpen(false);
+                }}>
+                  <FontAwesomeIcon icon={faSignOutAlt} />
+                  <span>Logout</span>
+                </button>
+              )}
+            </li>
           </ul>
         </nav>
 
-        {isLoggedIn && (
-          <NavLink to="/admin/dashboard" className="admin-dashboard-btn">
-            <FontAwesomeIcon icon={faTachometerAlt} />
-            <span style={{ marginLeft: "5px" }}>Dashboard</span>
-          </NavLink>
-        )}
-
         <div className="nav-actions">
+          {isLoggedIn && (
+            <NavLink to="/admin/dashboard" className="admin-dashboard-btn" onClick={() => setIsMenuOpen(false)}>
+              <FontAwesomeIcon icon={faTachometerAlt} />
+              <span>Dashboard</span>
+            </NavLink>
+          )}
+
           {!isLoggedIn ? (
             !role || role === "member" ? (
               <a href="/login" className="admin-login-btn">
@@ -80,6 +128,10 @@ function Navbar() {
             </button>
           )}
         </div>
+
+        <button ref={buttonRef} className="mobile-menu-btn" onClick={toggleMenu}>
+          <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} />
+        </button>
       </header>
     </div>
   );

@@ -2,22 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import axiosInstance from '../../config/axios';
-import API_ENDPOINTS from '../../config/api';
 
 import './login.css';
 
 function UnifiedLogin() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [data, setData] = useState({
-    email: '',
-    password: ''
-  });
-  const [forgotEmail, setForgotEmail] = useState('');
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
-  const [forgotMessage, setForgotMessage] = useState('');
 
   // Case-insensitive path detection
   const getInitialRole = () => {
@@ -26,7 +16,12 @@ function UnifiedLogin() {
     return 'member';
   };
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [activeTab, setActiveTab] = useState(getInitialRole());
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState('');
+  const [forgotMessage, setForgotMessage] = useState('');
 
   // Update the URL based on the active tab
   useEffect(() => {
@@ -37,42 +32,50 @@ function UnifiedLogin() {
     }
   }, [activeTab]);
 
-  const handleEmailChange = (e) => setData({ ...data, email: e.target.value });
-  const handlePasswordChange = (e) => setData({ ...data, password: e.target.value });
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
 
-  const handleLogin = async (e) => {
+  const handleSignIn = (e) => {
     e.preventDefault();
-    try {
-      const endpoint = isAdmin 
-        ? API_ENDPOINTS.AUTH.ADMIN_LOGIN 
-        : API_ENDPOINTS.AUTH.USER_LOGIN;
-      
-      const response = await axiosInstance.post(endpoint, data);
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('role', activeTab);
 
-      if (activeTab === 'admin') {
-        navigate("/admin/dashboard");
-      } else {
-        navigate("/admin-home");
-      }
+    const data = { email, password };
+    const endpoint = activeTab === 'member'
+      ? 'http://localhost:5001/api/auth/userlogin'
+      : 'http://localhost:5001/api/auth/adminlogin';
 
-      window.alert(`${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Login Successful`);
-    } catch (error) {
-      console.error('Login failed:', error);
-      window.alert("Invalid Credentials");
-    }
+    axios.post(endpoint, data)
+      .then((res) => {
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('role', activeTab);
+
+        if (activeTab === 'admin') {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/admin-home");
+        }
+
+        window.alert(`${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Login Successful`);
+      })
+      .catch((err) => {
+        console.error('Login Error:', err);
+        window.alert("Invalid Credentials");
+      });
   };
 
-  const handleForgotPassword = async (e) => {
-    e.preventDefault();
+  const handleForgotPassword = async () => {
+    if (!forgotEmail) {
+      return window.alert("Please enter your email");
+    }
+
     try {
-      const response = await axiosInstance.post(API_ENDPOINTS.AUTH.FORGOT_PASSWORD, { 
-        email: forgotEmail 
-      });
+      const endpoint = activeTab === 'member'
+        ? 'http://localhost:5001/api/auth/forgotPassword'
+        : 'http://localhost:5001/api/auth/forgotPassword';
+
+      const res = await axios.post(endpoint, { email: forgotEmail });
       setForgotMessage("Reset link sent! Please check your email.");
-    } catch (error) {
-      console.error('Password reset request failed:', error);
+    } catch (err) {
+      console.error(err);
       setForgotMessage("Failed to send reset link. Please try again.");
     }
   };
@@ -108,7 +111,7 @@ function UnifiedLogin() {
                 id="email"
                 type="text"
                 className="input"
-                value={data.email}
+                value={email}
                 onChange={handleEmailChange}
               />
             </div>
@@ -119,8 +122,8 @@ function UnifiedLogin() {
                     id="password"
                     type={showPassword ? 'text' : 'password'}
                     className="input"
-                    value={data.password}
-                    onChange={handlePasswordChange}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     />
                     <span className="password-toggle-icon" onClick={() => setShowPassword(!showPassword)}>
                     {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -133,7 +136,7 @@ function UnifiedLogin() {
                 type="submit"
                 className="button"
                 value={`Sign In as ${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}`}
-                onClick={handleLogin}
+                onClick={handleSignIn}
               />
             </div>
             <div className="hr" />

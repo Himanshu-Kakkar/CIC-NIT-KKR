@@ -56,6 +56,9 @@
   justify-content: center;
   gap: 1rem;
   padding: 1rem 0;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .team-grid {
@@ -69,7 +72,7 @@
 }
 
 .nav-arrow {
-  background: rgba(74, 114, 207, 0.3);
+  background: rgba(74, 114, 207, 0.8);
   border: none;
   border-radius: 50%;
   width: 50px;
@@ -83,21 +86,22 @@
   font-size: 1.5rem;
   box-shadow: 0 4px 15px rgba(74, 114, 207, 0.3);
   z-index: 10;
+  position: absolute;
 }
 
 .nav-arrow:hover {
-  background: rgba(74, 114, 207, 0.5);
+  background: rgba(74, 114, 207, 1);
   transform: translateY(-3px);
   color: #fff;
   box-shadow: 0 6px 20px rgba(74, 114, 207, 0.4);
 }
 
 .nav-arrow.left {
-  margin-right: 1.5rem;
+  left: -25px;
 }
 
 .nav-arrow.right {
-  margin-left: 1.5rem;
+  right: -25px;
 }
 
 .member-card {
@@ -254,21 +258,47 @@
   color: #67a4ff;
 }
 
+/* Responsive adjustments */
 @media (max-width: 1400px) {
   .team-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  
+  .nav-arrow.left {
+    left: -20px;
+  }
+  
+  .nav-arrow.right {
+    right: -20px;
   }
 }
 
 @media (max-width: 1024px) {
   .team-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .nav-arrow {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .nav-arrow.left {
+    left: -15px;
+  }
+  
+  .nav-arrow.right {
+    right: -15px;
   }
 }
 
 @media (max-width: 768px) {
   .team-grid {
     grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
   }
   
   .nav-arrow {
@@ -276,10 +306,42 @@
     height: 40px;
     font-size: 1.2rem;
   }
+  
+  .nav-arrow.left {
+    left: -15px;
+  }
+  
+  .nav-arrow.right {
+    right: -15px;
+  }
 }
 
 .profile-section {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .team-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .team-grid::-webkit-scrollbar {
+    display: none; /* hide scrollbar */
+  }
+
+  .team-grid > * {
+    flex: 0 0 80%; /* show one card at a time */
+    scroll-snap-align: start;
+  }
+
+  .nav-arrow {
+    display: none; /* hide arrows on mobile */
+  }
 }

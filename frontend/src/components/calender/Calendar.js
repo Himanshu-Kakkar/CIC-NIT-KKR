@@ -7,22 +7,10 @@ import axios from "axios";
 import './calender.css'
 import Swal from "sweetalert2";
 
-/**
- * ScheduleCalendar Component
- * A full-featured calendar component that allows users to:
- * - View events in month, week, and day views
- * - Create new events by selecting dates
- * - Delete events by clicking on them
- * - Drag and drop events to reschedule
- * - Resize events to change their duration
- */
 function ScheduleCalendar() {
-  // State to store calendar events
   const [events, setEvents] = useState([]);
-  // Ref to access calendar API methods
   const calendarRef = useRef(null);
 
-  // Fetch existing events when component mounts
   useEffect(() => {
     async function fetchData() {
       try {
@@ -43,10 +31,6 @@ function ScheduleCalendar() {
     fetchData();
   }, []);
 
-  /**
-   * Handles the creation of new events when a date range is selected
-   * Shows a prompt for event title and creates the event if confirmed
-   */
   function handleDateSelect(selectInfo) {
     Swal.fire({
       title: "Enter a new title for your event",
@@ -68,7 +52,6 @@ function ScheduleCalendar() {
             end: selectInfo.endStr,
           };
   
-          // Create new event in the backend
           axios
             .post("http://localhost:5001/calendarschema", event)
             .then((response) => {
@@ -79,10 +62,6 @@ function ScheduleCalendar() {
     });
   }
 
-  /**
-   * Handles event deletion when an event is clicked
-   * Shows a confirmation dialog before deleting
-   */
   function handleEventRemove(clickInfo) {
     Swal.fire({
       title: `Are you sure you want to delete the event '${clickInfo.event.title}'?`,
@@ -91,7 +70,6 @@ function ScheduleCalendar() {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Delete event from backend and update state
         axios.delete(`http://localhost:5001/calendarschema/${clickInfo.event.id}`).then(() => {
           const filteredEvents = events.filter((event) => event.id !== clickInfo.event.id);
           setEvents(filteredEvents);
@@ -100,10 +78,6 @@ function ScheduleCalendar() {
     });
   }
 
-  /**
-   * Handles event updates when an event is dragged or resized
-   * Updates both the backend and the calendar display
-   */
   function handleEventUpdate(updateInfo, calendarApi) {
     const { event } = updateInfo;
     const updatedEvent = {
@@ -116,10 +90,6 @@ function ScheduleCalendar() {
     });
   }
 
-  /**
-   * Handles adding a new event for the current date
-   * Shows a prompt for event title and creates the event if provided
-   */
   function handleAddEvent() {
     let title = prompt("Please enter a title for your event:");
 
@@ -130,7 +100,6 @@ function ScheduleCalendar() {
         allDay: true,
       };
 
-      // Create new event in the backend
       axios.post('http://localhost:5001/calendarschema', event).then((response) => {
         setEvents([...events, { ...event, id: response.data._id }]);
       });

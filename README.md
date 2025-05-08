@@ -122,7 +122,7 @@ cd frontend
 npm start
 ```
 
-Visit `http://localhost:3000` to access the application.
+Visit `http://localhost:3001` to access the application.
 
 ## Project Structure
 ```
