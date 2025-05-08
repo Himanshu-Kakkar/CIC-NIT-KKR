@@ -4,6 +4,8 @@ import axios from "axios";
 import swal from "sweetalert";
 import "./Attendance.css";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const AttendanceForm = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -25,7 +27,7 @@ const AttendanceForm = () => {
 
   const fetchStudents = () => {
     axios
-      .get("http://localhost:5001/getuser", {
+      .get(`${API_URL}/getuser`, {
         headers: {
           "content-type": "application/json",
           "x-auth-token": token, // Changed from token to x-auth-token
@@ -69,7 +71,7 @@ const AttendanceForm = () => {
 
     axios
       .post(
-        "http://localhost:5001/submit-attendence",
+        `${API_URL}/submit-attendence`,
         {
           attendanceData: attendanceArray,
           date: formattedDate,
@@ -104,7 +106,7 @@ const AttendanceForm = () => {
 
     axios
       .post(
-        "http://localhost:5001/getattendancebydate",
+        `${API_URL}/getattendancebydate`,
         {
           date: formattedDate,
         },

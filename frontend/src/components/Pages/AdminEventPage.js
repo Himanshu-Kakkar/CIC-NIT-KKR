@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const API_URL=process.env.REACT_APP_API_URL;
+
 const AdminEventsPage = () => {
   const [title, setTitle] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -18,7 +20,7 @@ const AdminEventsPage = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:5001/api/event/all-events");
+      const res = await axios.get(`${API_URL}/api/event/all-events`);
       setEvents(res.data.events);
     } catch (error) {
       console.error("Failed to fetch events:", error);
@@ -53,7 +55,7 @@ const AdminEventsPage = () => {
       formData.append("endTime", endTime);
       formData.append("poster", poster);
 
-      await axios.post("http://localhost:5001/api/event/create-event", formData, {
+      await axios.post(`${API_URL}/api/event/create-event`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           "Authorization": `Bearer ${token}`,
@@ -88,7 +90,7 @@ const AdminEventsPage = () => {
         return;
       }
 
-      await axios.delete(`http://localhost:5001/api/event/delete-event/${id}`, {
+      await axios.delete(`${API_URL}/api/event/delete-event/${id}`, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -114,7 +116,7 @@ const AdminEventsPage = () => {
         return;
       }
 
-      const response = await axios.get(`http://localhost:5001/api/event/${eventId}/download`, {
+      const response = await axios.get(`${API_URL}/api/event/${eventId}/download`, {
         headers: { 
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'

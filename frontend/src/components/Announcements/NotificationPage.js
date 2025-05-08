@@ -6,6 +6,8 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import './NotificationPage.css';
 
+const API_URL=process.env.REACT_APP_API_URL;
+
 function App() {
   const [notificationMessage, setNotificationMessage] = useState('');
   const [notificationVisible, setNotificationVisible] = useState(false);
@@ -85,7 +87,7 @@ function NotificationForm({ setNotificationMessage, handleNotificationSubmit }) 
     const data = { title, content };
     
     // Logic to handle the submission of the notification form
-    axios.post('http://localhost:5001/notify-all', data)
+    axios.post(`${API_URL}/notify-all`, data)
       .then((res) => {
         swal("Success", "Notification sent", "success");
         handleNotificationSubmit();

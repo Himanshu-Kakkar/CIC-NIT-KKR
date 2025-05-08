@@ -5,6 +5,9 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 import './login.css';
 
+const API_URL=process.env.REACT_APP_API_URL;
+console.log(API_URL);
+
 function UnifiedLogin() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -40,8 +43,8 @@ function UnifiedLogin() {
 
     const data = { email, password };
     const endpoint = activeTab === 'member'
-      ? 'http://localhost:5001/api/auth/userlogin'
-      : 'http://localhost:5001/api/auth/adminlogin';
+      ? `${API_URL}/api/auth/userlogin`
+      : `${API_URL}/api/auth/adminlogin`;
 
     axios.post(endpoint, data)
       .then((res) => {
@@ -69,8 +72,8 @@ function UnifiedLogin() {
 
     try {
       const endpoint = activeTab === 'member'
-        ? 'http://localhost:5001/api/auth/forgotPassword'
-        : 'http://localhost:5001/api/auth/forgotPassword';
+        ? `${API_URL}/api/auth/forgotPassword`
+        : `${API_URL}/api/auth/forgotPassword`;
 
       const res = await axios.post(endpoint, { email: forgotEmail });
       setForgotMessage("Reset link sent! Please check your email.");

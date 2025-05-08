@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const API_URL=process.env.REACT_APP_API_URL;
+
 const MembersPage = () => {
   const [name, setName] = useState("");
   const [rollNo, setRollNo] = useState("");
@@ -18,7 +20,7 @@ const MembersPage = () => {
   const fetchMembers = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5001/api/members", {
+      const res = await axios.get(`${API_URL}/api/members`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -54,7 +56,7 @@ const MembersPage = () => {
       const token = localStorage.getItem("token");
       
       await axios.post(
-        "http://localhost:5001/api/members",
+        `${API_URL}/api/members`,
         {
           name,
           rollNo,
@@ -104,7 +106,7 @@ const MembersPage = () => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.delete(`http://localhost:5001/api/members/${id}`, {
+      await axios.delete(`${API_URL}/api/members/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

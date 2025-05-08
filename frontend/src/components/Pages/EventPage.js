@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./EventPage.css"; // apne style ka file yahi rakha hai to import rehne do
 
+const API_URL=process.env.REACT_APP_API_URL;
+
 const EventsPage = () => {
   const [events, setEvents] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -17,7 +19,7 @@ const EventsPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5001/api/event/all-events")
+      .get(`${API_URL}/api/event/all-events`)
       .then((res) => {
         setEvents(res.data.events);
       })
@@ -64,7 +66,7 @@ const EventsPage = () => {
     const data = formData[eventId];
 
     try {
-      const res = await axios.post(`http://localhost:5001/api/event/${eventId}/register`, {
+      const res = await axios.post(`${API_URL}/api/event/${eventId}/register`, {
         eventId,
         name: data.name,
         email: data.email,

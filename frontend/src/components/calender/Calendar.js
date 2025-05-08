@@ -6,11 +6,18 @@ import interactionPlugin from "@fullcalendar/interaction";
 import axios from "axios";
 import "./calender.css";
 import Swal from "sweetalert2";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+
+const API_URL=process.env.REACT_APP_API_URL;
 
 function ScheduleCalendar() {
+  const navigate = useNavigate();
   const [events, setEvents] = useState([]);
   const [initialView, setInitialView] = useState("dayGridMonth");
   const [isMobile, setIsMobile] = useState(window.innerWidth < 500);
+  const [isVisible, setIsVisible] = useState(true);
   const calendarRef = useRef(null);
 
   // Handle responsive view switch and isMobile state
@@ -29,7 +36,7 @@ function ScheduleCalendar() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://localhost:5001/calendarschema");
+        const response = await axios.get(`${API_URL}/calendarschema`);
         const calendarEvents = response.data.map((event) => ({
           title: event.title,
           start: event.start,
@@ -44,6 +51,10 @@ function ScheduleCalendar() {
     }
     fetchData();
   }, []);
+
+  const handleClose = () => {
+    navigate(-1); // Go back to previous page
+  };
 
   // 🟢 For PC: Tap-to-add
   function handleDateSelect(selectInfo) {
@@ -82,7 +93,7 @@ function ScheduleCalendar() {
             allDay: true
           };
 
-          axios.post("http://localhost:5001/calendarschema", event)
+          axios.post(`${API_URL}/calendarschema`, event)
             .then((response) => {
               const newEvent = {
                 ...event,
@@ -152,7 +163,7 @@ function ScheduleCalendar() {
           allDay: true
         };
   
-        axios.post("http://localhost:5001/calendarschema", event)
+        axios.post(`${API_URL}/calendarschema`, event)
           .then((response) => {
             const newEvent = {
               ...event,
@@ -188,7 +199,7 @@ function ScheduleCalendar() {
       cancelButtonText: "No, keep it",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5001/calendarschema/${clickInfo.event.id}`).then(() => {
+        axios.delete(`${API_URL}/calendarschema/${clickInfo.event.id}`).then(() => {
           const filteredEvents = events.filter((event) => event.id !== clickInfo.event.id);
           setEvents(filteredEvents);
         });
@@ -205,13 +216,18 @@ function ScheduleCalendar() {
       allDay: event.allDay
     };
 
-    axios.put(`http://localhost:5001/calendarschema/${event.id}`, updatedEvent).then(() => {
+    axios.put(`${API_URL}/calendarschema/${event.id}`, updatedEvent).then(() => {
       // FullCalendar will reflect the changes automatically
     });
   }
 
   return (
     <div className="calendar-container">
+      {isMobile && isVisible && (
+        <button className="close-calendar-btn" onClick={handleClose}>
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
+      )}
       <FullCalendar
         ref={calendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
