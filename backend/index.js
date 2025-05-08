@@ -39,7 +39,7 @@ const memberRoutes=require('./routes/memberRoutes')
 //server running status 
 database.connect();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 const JWT_SECRET = process.env.JWT_SECRET;
 // const todoRoutes = require('./routes/todoRoutes');
