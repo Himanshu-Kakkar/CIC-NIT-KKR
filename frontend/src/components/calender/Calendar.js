@@ -47,6 +47,21 @@ function ScheduleCalendar() {
 
   // 🟢 For PC: Tap-to-add
   function handleDateSelect(selectInfo) {
+    // Check if selected date is in the past
+    const selectedDate = new Date(selectInfo.startStr);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time to start of day
+
+    if (selectedDate < today) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Date',
+        text: 'Cannot add events to past dates.'
+      });
+      selectInfo.view.calendar.unselect();
+      return;
+    }
+
     Swal.fire({
       title: "Enter a new title for your event",
       input: "text",
@@ -64,11 +79,33 @@ function ScheduleCalendar() {
             title,
             start: selectInfo.startStr,
             end: selectInfo.endStr,
+            allDay: true
           };
 
-          axios.post("http://localhost:5001/calendarschema", event).then((response) => {
-            setEvents([...events, { ...event, id: response.data._id }]);
-          });
+          axios.post("http://localhost:5001/calendarschema", event)
+            .then((response) => {
+              const newEvent = {
+                ...event,
+                id: response.data._id
+              };
+              setEvents(prevEvents => [...prevEvents, newEvent]);
+              
+              Swal.fire({
+                icon: 'success',
+                title: 'Event Added!',
+                text: 'Your event has been successfully added to the calendar.',
+                timer: 2000,
+                showConfirmButton: false
+              });
+            })
+            .catch((error) => {
+              console.error('Error adding event:', error);
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Failed to add event. Please try again.'
+              });
+            });
         }
       }
     });
@@ -80,17 +117,29 @@ function ScheduleCalendar() {
       title: "Add Event",
       html:
         '<input id="event-title" class="swal2-input" placeholder="Event title">' +
-        '<input id="event-date" type="date" class="swal2-input">',
+        '<input id="event-date" type="date" class="swal2-input" min="' + new Date().toISOString().split('T')[0] + '">',
       focusConfirm: false,
       showCancelButton: true,
       confirmButtonText: "Create",
       preConfirm: () => {
         const title = document.getElementById("event-title").value;
         const date = document.getElementById("event-date").value;
+        
         if (!title || !date) {
           Swal.showValidationMessage("Please enter both title and date");
           return false;
         }
+
+        // Check if selected date is in the past
+        const selectedDate = new Date(date);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Reset time to start of day
+
+        if (selectedDate < today) {
+          Swal.showValidationMessage("Cannot add events to past dates");
+          return false;
+        }
+
         return { title, date };
       },
     }).then((result) => {
