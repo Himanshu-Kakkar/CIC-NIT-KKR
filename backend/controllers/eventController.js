@@ -14,7 +14,7 @@ exports.createEvent = async (req, res) => {
     }
 
     const posterUrl = req.file.path;
-    console.log(posterUrl);
+    //console.log(posterUrl);
     // Create new event and save to MongoDB
     const newEvent = new Event({
       title,
