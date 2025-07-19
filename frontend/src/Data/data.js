@@ -8,7 +8,7 @@ export const clubData = [
     fullDescription:
       "Audio Visual & Aid Club is a Student's Club of National Institute of Technology, Kurukshetra. It mainly focuses on the Sound and Light System Handling of Jubilee Hall, AE Lawns and OAT along with other areas of college during national level cultural fest CONFLUENCE and technical fest TECHSPARDHA.",
     events: ["Techspardha", "Confluence"],
-    phNumber:"+91 9058 058 074",
+    phNumber:"+91  8218 287 307",
     img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745478216/AVA1_w8pguk.jpg",
     img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745478216/AVA2_dksdwh.jpg",
     img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745478216/AVA3_ipkpmn.jpg",
@@ -25,7 +25,7 @@ export const clubData = [
     fullDescription:
       "Colours Club celebrates diversity and inclusivity through art, cultural activities, and exhibitions.",
     events: ["Art Exhibition", "Cultural Workshop"],
-    phNumber:"+91 9058 058 074",
+    phNumber:"+91 8218 287 307",
     img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745519705/C1_jn4cwu.jpg",
     img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745519703/C2_ysbzfp.jpg",
     img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745519703/C3_xjalw2.png",
@@ -42,7 +42,7 @@ export const clubData = [
     fullDescription:
       "Fine Arts and Modelling club is one of the official clubs of NIT Kurukshetra. It is the hub of artists who come together to ameliorate and sustain art culture in the college. And while doing the same, it provides ample opportunities to those with artistic inclination to hone and flaunt their skills with art and craft.",
     events: ["Art Workshop", "Exhibition"],
-    phNumber:"+91 9058 058 074",
+    phNumber:"+91 8218 287 307",
     img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745440328/FA1_f3f5r1.png",
     img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745440328/FA2_d0q4w9.png",
     img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745440329/FA3_n5vfuv.png",
@@ -59,7 +59,7 @@ export const clubData = [
     fullDescription:
       "Hiking and trekking club as the name proposes, is in charge of sorting out Trips, Excursions and Adventure Activities close by conferring learning about Safety, Health and Environment. We as a group for the most part concentrate on the Overall advancement of the understudies i.e. from comprehensive Management aptitudes to powerful Health.",
     events: ["Tech Talk", "Innovation Hackathon"],
-    phNumber:"+91 9058 058 074",
+    phNumber:"+91 8218 287 307",
     img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745475947/HTC1_jle7gs.jpg",
     img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745475947/HTC2_lh9m6f.jpg",
     img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745475948/HTC3_hsh1yc.jpg",
@@ -76,7 +76,7 @@ export const clubData = [
     fullDescription:
       "HLAD is dedicated to promoting Hindi literature, poetry, and debating skills through events and workshops.",
     events: ["Poetry Recitation", "Debating Championship"],
-    phNumber:"+91 9058 058 074",
+    phNumber:"+91 8218 287 307",
     img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745477386/HLAD1_vehulx.jpg",
     img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745477387/HLAD2_rwfz2v.jpg",
     img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745477387/HLAD3_ocsglm.jpg",
@@ -93,7 +93,7 @@ export const clubData = [
     fullDescription:
       "ELED focuses on electronics and electrical engineering, empowering students with hands-on experiences in innovation.",
     events: ["Electronics Workshop", "Circuit Design Contest"],
-    phNumber:"+91 9058 058 074",
+    phNumber:"+91 8218 287 307",
     img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745476537/ELAD1_gtlr1c.jpg",
     img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745476538/ELAD2_ollyj0.jpg",
     img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745476538/ELAD3_fybvjo.jpg",
@@ -107,7 +107,7 @@ export const clubData = [
     fullDescription:
       "Music and Dramatics Club has an important role to play in various fests and pre-shows of NIT Kurukshetra and is the principle organizer of dance, music, dramatic events of annual cultural fests and pre-shows for year-long. Do you dance or sing or act? If yes, we will give you the stage and opportunities, be it a solo or group talent we set an event for all.",
     events: ["Manegement of Events", "Confluence"],
-    phNumber:"+91 9058 058 074",
+    phNumber:"+91 8218 287 307",
     img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745441223/MD1_rmbcd5.png",
     img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745441217/MD2_cqb81x.png",
     img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745441217/MD3_dqwvou.png",
@@ -124,7 +124,7 @@ export const clubData = [
     fullDescription:
       "The Post Graduate's Club is one of the official clubs of NIT Kurukshetra. We, a team of post-graduation students, helps and guides the students to subsist the on-going events in the premises and outside as well. PG club helps you to interact with other branches of the institute and to develop in all aspects.",
     events: ["Postgraduate Interaction", "Workshops on Research"],
-    phNumber:"+91 9058 058 074",
+    phNumber:"+91 8218 287 307",
     img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745441608/PG1_tr51hs.png",
     img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745441608/PG2_n5fbew.png",
     img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745441609/PG3_a27vpf.png",
@@ -139,7 +139,7 @@ export const clubData = [
     fullDescription:
       "This is the official club of NIT Kurukshetra responsible for covering all the events during various fests (like Confluence, Techspardha, Talent Show), guest lectures, seminars, etc. Apart from photography, the club indulges in movie making, video editing, app designing, graphic designing (Photoshop) and web designing. The club is a conglomerate of photography enthusiasts who teach and mould students in photography, video making and designing skills.",
     events: ["Photography Contest", "Film Screening"],
-    phNumber:"+91 9058 058 074",
+    phNumber:"+91 8218 287 307",
     img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745440789/G1_ersuvc.png",
     img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745440789/G2_ppfvao.png",
     img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745440790/G3_yqfltm.png",
@@ -156,7 +156,7 @@ export const clubData = [
     fullDescription:
       "SAC organizes fun events and helps bring life to the campus during cultural fests by managing games, stage, and more.",
     events: ["Sports Tournament", "Cultural Games"],
-    phNumber:"+91 9058 058 074",
+    phNumber:"+91 8218 287 307",
     img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745442353/S1_mtnge5.png",
     img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745442354/S2_t5nric.png",
     img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745442354/S3_jmm9pg.png",
@@ -173,7 +173,7 @@ export const clubData = [
     fullDescription:
       "Society for the Promotion of Indian Classical Music and Culture Amongst Youth is a non-political nationwide voluntary movement that organizes programs of classical music and dance, folk arts, crafts, yoga, classic cinema screenings and much more inside the schools and colleges throughout the world to make students more aware about the Indian and world heritage.",
     events: ["Classical Music Performance", "Yoga and Art Workshops"],
-    phNumber:"+91 9058 058 074",
+    phNumber:"+91 8218 287 307",
     img1: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745442353/S1_mtnge5.png",
     img2: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745442354/S2_t5nric.png",
     img3: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745442354/S3_jmm9pg.png",

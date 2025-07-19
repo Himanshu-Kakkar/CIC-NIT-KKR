@@ -1,12 +1,6 @@
 # CIC: Campus Innovation Council
 ## A Club Management Website
 
-### Team Members:
-- Himanshu Kakkar (523110014)
-- Nikhil Agrawal (523410009)
-- Kushagra Richhariya (523410035)
-- Ritik Maheshwari (523110025)
-
 ### Under the guidance of:
 Dr. Nidhi Gupta
 Department of Computer Applications
@@ -19,12 +13,6 @@ CIC (Campus Innovation Council) is a comprehensive web-based club management sys
 The main landing page of CIC showcasing the club's activities and upcoming events.
 <div align="center">
   <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282711/home_f5rrqs.png" alt="CIC home" width="500"/>
-</div>
-
-### Developers Section
-Meet the talented team behind the development of CIC platform.
-<div align="center">
-  <img src="https://res.cloudinary.com/dvnzvz4xh/image/upload/v1746282710/develpoers_ti6tkh.png" alt="developers" width="500"/>
 </div>
 
 ## Key Features
@@ -86,8 +74,8 @@ Personalized dashboard for members to track their activities and registrations.
 
 1. Clone the repository
 ```bash
-git clone https://github.com/Himanshu-Kakkar/KLUBB
-cd cic-project
+git clone https://github.com/Himanshu-Kakkar/CIC-NIT-KKR
+cd CIC
 ```
 
 2. Install Dependencies
