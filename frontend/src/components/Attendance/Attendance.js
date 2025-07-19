@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
-import "./Attendance.css";
+// import "./Attendance.css";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -191,32 +191,31 @@ const AttendanceForm = () => {
 
   return (
     <>
-         <h1>Manage Attendance</h1>
+         <h1 className="text-3xl font-bold mb-6 text-center text-blue-100">Manage Attendance</h1>
 
-    <div className="attendance-form-container">
-   
-      <div className="mode-toggle">
+    <div className="bg-gradient-to-br from-slate-800 to-gray-900 rounded-2xl shadow-xl p-8 mb-8 border border-blue-500/20 overflow-hidden relative">
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-900 to-blue-500 rounded-t-2xl" />
+      <div className="flex justify-center mb-10 bg-slate-800 p-2 rounded-xl shadow border border-slate-700 relative z-10">
         <button 
           type="button" 
-          className={`mode-button ${!viewMode ? 'active' : ''}`}
+          className={`flex-1 py-4 px-6 rounded-lg font-semibold text-base transition-all duration-200 text-slate-400 bg-transparent relative z-20 text-center ${!viewMode ? 'text-slate-50 bg-gradient-to-br from-blue-900 to-blue-500 shadow-lg' : 'hover:text-slate-200 hover:bg-slate-700'}`}
           onClick={() => viewMode && toggleViewMode()}
         >
           Record Attendance
         </button>
         <button 
           type="button" 
-          className={`mode-button ${viewMode ? 'active' : ''}`}
+          className={`flex-1 py-4 px-6 rounded-lg font-semibold text-base transition-all duration-200 text-slate-400 bg-transparent relative z-20 text-center ${viewMode ? 'text-slate-50 bg-gradient-to-br from-blue-900 to-blue-500 shadow-lg' : 'hover:text-slate-200 hover:bg-slate-700'}`}
           onClick={() => !viewMode && toggleViewMode()}
         >
           View Attendance
         </button>
       </div>
-      
       {!viewMode ? (
         // Record Attendance Mode
         <form onSubmit={handleSubmit}>
-          <h2 className="attendance-form-header">Record Attendance</h2>
-          <div className="attendance-form-Date">
+          <h2 className="mb-6 text-blue-100 text-xl font-bold border-b border-slate-700 pb-4 relative">Record Attendance</h2>
+          <div className="flex gap-4 mb-10 justify-center flex-wrap">
             <input
               type="number"
               min="1"
@@ -224,6 +223,7 @@ const AttendanceForm = () => {
               placeholder="DD"
               value={day}
               onChange={(e) => setDay(e.target.value)}
+              className="w-28 py-3 px-4 rounded-lg border-2 border-slate-700 bg-slate-800 text-slate-100 text-center text-base font-medium transition-all duration-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/30 placeholder:text-slate-500"
             />
             <input
               type="number"
@@ -232,6 +232,7 @@ const AttendanceForm = () => {
               placeholder="MM"
               value={month}
               onChange={(e) => setMonth(e.target.value)}
+              className="w-28 py-3 px-4 rounded-lg border-2 border-slate-700 bg-slate-800 text-slate-100 text-center text-base font-medium transition-all duration-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/30 placeholder:text-slate-500"
             />
             <input
               type="number"
@@ -240,27 +241,24 @@ const AttendanceForm = () => {
               placeholder="YYYY"
               value={year}
               onChange={(e) => setYear(e.target.value)}
+              className="w-28 py-3 px-4 rounded-lg border-2 border-slate-700 bg-slate-800 text-slate-100 text-center text-base font-medium transition-all duration-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/30 placeholder:text-slate-500"
             />
           </div>
 
           {studentsName.map((student, index) => (
-            <div className="attendance-form-student" key={index}>
-              <span>{student}</span>
-              <div className="attendance-form-button-container">
+            <div className="flex justify-between items-center py-5 px-6 mb-4 bg-slate-800 rounded-xl transition-all duration-200 border border-slate-700 shadow-sm hover:-translate-y-1 hover:shadow-lg hover:border-slate-600 hover:bg-slate-700" key={index}>
+              <span className="text-lg font-medium text-slate-100">{student}</span>
+              <div className="flex gap-3">
                 <button
                   type="button"
-                  className={`attendance-form-button ${
-                    attendance[student] === "Present" ? "active" : ""
-                  }`}
+                  className={`px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 text-slate-100 bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500/30 ${attendance[student] === "Present" ? "bg-green-700" : ""}`}
                   onClick={() => handleButtonClick(student, "Present")}
                 >
                   Present
                 </button>
                 <button
                   type="button"
-                  className={`attendance-form-button ${
-                    attendance[student] === "Absent" ? "active" : ""
-                  }`}
+                  className={`px-4 py-2 rounded-lg font-semibold text-base transition-all duration-200 text-slate-100 bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500/30 ${attendance[student] === "Absent" ? "bg-red-700" : ""}`}
                   onClick={() => handleButtonClick(student, "Absent")}
                 >
                   Absent
@@ -269,14 +267,14 @@ const AttendanceForm = () => {
             </div>
           ))}
 
-          <div className="attendance-form-buttons-row">
-            <button type="submit" className="attendance-form-submits">
+          <div className="flex justify-between items-center mt-10">
+            <button type="submit" className="px-8 py-3 rounded-lg font-semibold text-base transition-all duration-200 text-slate-100 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30">
               Submit Attendance
             </button>
             <button
               type="button"
               onClick={handleExportToExcel}
-              className="attendance-form-submits"
+              className="px-8 py-3 rounded-lg font-semibold text-base transition-all duration-200 text-slate-100 bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500/30"
             >
               Export to Excel
             </button>
@@ -285,65 +283,78 @@ const AttendanceForm = () => {
       ) : (
         // View Attendance Mode
         <div>
-          <h1 className="attendance-form-header">View Attendance</h1>
-          <div className="search-container">
-            <div className="attendance-form-Date">
-              <input
-                type="number"
-                min="1"
-                max="31"
-                placeholder="DD"
-                value={searchDay}
-                onChange={(e) => setSearchDay(e.target.value)}
-              />
-              <input
-                type="number"
-                min="1"
-                max="12"
-                placeholder="MM"
-                value={searchMonth}
-                onChange={(e) => setSearchMonth(e.target.value)}
-              />
-              <input
-                type="number"
-                min="2000"
-                max="2100"
-                placeholder="YYYY"
-                value={searchYear}
-                onChange={(e) => setSearchYear(e.target.value)}
-              />
-              <button 
-                type="button" 
-                className="search-button"
-                onClick={handleSearchAttendance}
-              >
-                Search
-              </button>
-            </div>
+          <h1 className="mb-6 text-blue-100 text-xl font-bold border-b border-slate-700 pb-4 relative">View Attendance</h1>
+          <div className="flex gap-4 mb-10 justify-center flex-wrap">
+            <input
+              type="number"
+              min="1"
+              max="31"
+              placeholder="DD"
+              value={searchDay}
+              onChange={(e) => setSearchDay(e.target.value)}
+              className="w-28 py-3 px-4 rounded-lg border-2 border-slate-700 bg-slate-800 text-slate-100 text-center text-base font-medium transition-all duration-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/30 placeholder:text-slate-500"
+            />
+            <input
+              type="number"
+              min="1"
+              max="12"
+              placeholder="MM"
+              value={searchMonth}
+              onChange={(e) => setSearchMonth(e.target.value)}
+              className="w-28 py-3 px-4 rounded-lg border-2 border-slate-700 bg-slate-800 text-slate-100 text-center text-base font-medium transition-all duration-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/30 placeholder:text-slate-500"
+            />
+            <input
+              type="number"
+              min="2000"
+              max="2100"
+              placeholder="YYYY"
+              value={searchYear}
+              onChange={(e) => setSearchYear(e.target.value)}
+              className="w-28 py-3 px-4 rounded-lg border-2 border-slate-700 bg-slate-800 text-slate-100 text-center text-base font-medium transition-all duration-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/30 placeholder:text-slate-500"
+            />
+            <button 
+              type="button" 
+              className="px-6 py-3 rounded-lg font-semibold text-base transition-all duration-200 text-slate-100 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+              onClick={handleSearchAttendance}
+            >
+              Search
+            </button>
           </div>
           
           {/* Only show attendance list if we have actual data to display */}
           {Object.keys(attendance).length > 0 && day && month && year && (
             <div>
-              <h2 className="date-display">
+              <h2 className="mb-6 text-blue-100 text-xl font-bold border-b border-slate-700 pb-4 relative">
                 Attendance for: {day}/{month}/{year}
               </h2>
-              <div className="attendance-list">
-                {Object.entries(attendance).map(([name, status], index) => (
-                  <div className="attendance-item" key={index}>
-                    <span className="student-name">{name}</span>
-                    <span className={`status-badge ${status.toLowerCase()}`}>
-                      {status}
-                    </span>
-                  </div>
-                ))}
+              <div className="overflow-x-auto">
+                <table className="min-w-full bg-slate-800 rounded-lg shadow-lg border border-slate-700">
+                  <thead className="bg-slate-700 text-slate-200">
+                    <tr>
+                      <th className="py-3 px-6 text-left text-sm font-semibold text-slate-100">Name</th>
+                      <th className="py-3 px-6 text-left text-sm font-semibold text-slate-100">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-slate-100">
+                    {Object.entries(attendance).map(([name, status], index) => (
+                      <tr key={index} className="hover:bg-slate-700/50">
+                        <td className="py-3 px-6 text-left text-sm font-medium">{name}</td>
+                        <td className="py-3 px-6 text-left text-sm">
+                          <span className={`px-3 py-1 rounded-full text-xs font-semibold ${status.toLowerCase() === 'present' ? 'bg-green-500 text-green-100' : 'bg-red-500 text-red-100'}`}>
+                            {status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
               
-              <div className="attendance-form-buttons-row">
+              <div className="flex justify-end items-center mt-10">
                 <button
                   type="button"
                   onClick={handleExportToExcel}
-                  className="attendance-form-submits"
+                  className="px-8 py-3 rounded-lg font-semibold text-base transition-all duration-200 text-slate-100 bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500/30"
                 >
                   Export to Excel
                 </button>

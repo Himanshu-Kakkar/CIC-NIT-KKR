@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./ClubForm.css";
-import { clubData } from '../../Data/data';
+import { clubData } from "../../Data/data";
 
 const ClubForm = ({ onClose, clubName }) => {
   const [formData, setFormData] = useState({
@@ -17,72 +16,37 @@ const ClubForm = ({ onClose, clubName }) => {
   const [showWhatsAppPopup, setShowWhatsAppPopup] = useState(false);
 
   useEffect(() => {
-    // Find the club's phone number from clubData
     const club = clubData.find(club => club.name === clubName);
-    if (club) {
-      setClubPhoneNumber(club.phNumber);
-    }
+    if (club) setClubPhoneNumber(club.phNumber);
   }, [clubName]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Reset year when course changes
   useEffect(() => {
-    setFormData(prev => ({
-      ...prev,
-      year: ''
-    }));
+    setFormData(prev => ({ ...prev, year: "" }));
   }, [formData.course]);
 
   const validateForm = () => {
     const errors = {};
-    if (!formData.fullName) {
-      errors.fullName = "Please enter your full name";
-    }
-    if (!formData.email) {
-      errors.email = "Please enter your email";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = "Please enter a valid email";
-    }
-    if (!formData.mobileNumber) {
-      errors.mobileNumber = "Please enter your mobile number";
-    } else if (!/^\d{10}$/.test(formData.mobileNumber)) {
-      errors.mobileNumber = "Mobile number must be 10 digits";
-    }
-    if (!formData.course) {
-      errors.course = "Please select your course";
-    }
-    if (!formData.year) {
-      errors.year = "Please select your year";
-    }
-    if (!formData.purpose) {
-      errors.purpose = "Please enter your purpose";
-    }
+    if (!formData.fullName) errors.fullName = "Please enter your full name";
+    if (!formData.email) errors.email = "Please enter your email";
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) errors.email = "Please enter a valid email";
+    if (!formData.mobileNumber) errors.mobileNumber = "Please enter your mobile number";
+    else if (!/^\d{10}$/.test(formData.mobileNumber)) errors.mobileNumber = "Mobile number must be 10 digits";
+    if (!formData.course) errors.course = "Please select your course";
+    if (!formData.year) errors.year = "Please select your year";
+    if (!formData.purpose) errors.purpose = "Please enter your purpose";
     return errors;
   };
 
-  const isYearDisabled = (yearValue) => {
+  const isYearDisabled = (year) => {
+    const yearNum = parseInt(year);
     if (!formData.course) return false;
-    
-    const yearNum = parseInt(yearValue);
-    
-    // For MBA, M.Sc, M.Tech - only 1st and 2nd year allowed
-    if (['MBA', 'M.Sc', 'M.Tech'].includes(formData.course)) {
-      return yearNum > 2;
-    }
-    
-    // For MCA - up to 3rd year allowed
-    if (formData.course === 'MCA') {
-      return yearNum > 3;
-    }
-    
-    // For B.Tech - all years allowed
+    if (["MBA", "M.Sc", "M.Tech"].includes(formData.course)) return yearNum > 2;
+    if (formData.course === "MCA") return yearNum > 3;
     return false;
   };
 
@@ -92,9 +56,8 @@ const ClubForm = ({ onClose, clubName }) => {
     setFormErrors(errors);
 
     if (Object.keys(errors).length === 0) {
-      // Format the message
       const message = `${clubName} Query from :-
-      
+
 Name: ${formData.fullName}
 Email: ${formData.email}
 Mobile: ${formData.mobileNumber}
@@ -102,24 +65,19 @@ Course: ${formData.course}
 Year: ${formData.year}
 Purpose: ${formData.purpose}`;
 
-      // Create WhatsApp URL
       if (!clubPhoneNumber) {
-        alert('Club phone number not found. Please try again later.');
+        alert("Club phone number not found. Please try again later.");
         return;
       }
-      
-      const whatsappUrl = `https://wa.me/${clubPhoneNumber.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
-      
-      // Try to open WhatsApp
-      const newWindow = window.open(whatsappUrl, '_blank');
-      
-      // If window was blocked or WhatsApp didn't open
-      if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+
+      const whatsappUrl = `https://wa.me/${clubPhoneNumber.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
+      const newWindow = window.open(whatsappUrl, "_blank");
+
+      if (!newWindow || newWindow.closed || typeof newWindow.closed === "undefined") {
         setShowWhatsAppPopup(true);
         return;
       }
 
-      // Reset form
       setFormData({
         fullName: "",
         email: "",
@@ -129,143 +87,137 @@ Purpose: ${formData.purpose}`;
         purpose: "",
       });
 
-      // Close the form after submission
-      if (onClose) {
-        onClose();
-      }
+      if (onClose) onClose();
     }
   };
 
   const handleDownloadWhatsApp = () => {
-    window.open('https://www.whatsapp.com/download', '_blank');
+    window.open("https://www.whatsapp.com/download", "_blank");
   };
 
   return (
-    <div className="club-contact-form__wrapper">
-      <div className="club-contact-form__container">
-        <div className="club-contact-form">
-          <h2 className="club-contact-form__title">Contact {clubName || "Club"}</h2>
-          
-          <div className="club-contact-form__group">
-            <label className="club-contact-form__label" htmlFor="fullName">Full Name</label>
-            <input
-              id="fullName"
-              type="text"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleChange}
-              className="club-contact-form__input"
-              placeholder="Enter your full name"
-            />
-            {formErrors.fullName && <span className="club-contact-form__error">{formErrors.fullName}</span>}
-          </div>
+    <div className="w-full min-h-screen flex items-center justify-center bg-[#edeef2] p-5">
+      <div className="w-full max-w-xl bg-white/95 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden">
+        <div className="p-10">
+          <h2 className="text-center text-gray-700 text-2xl font-semibold mb-8 mt-5">Contact {clubName || "Club"}</h2>
 
-          <div className="club-contact-form__group">
-            <label className="club-contact-form__label" htmlFor="mobileNumber">Mobile Number</label>
-            <input
-              id="mobileNumber"
-              type="tel"
-              name="mobileNumber"
-              value={formData.mobileNumber}
-              onChange={handleChange}
-              className="club-contact-form__input"
-              placeholder="Enter your mobile number"
-            />
-            {formErrors.mobileNumber && <span className="club-contact-form__error">{formErrors.mobileNumber}</span>}
-          </div>
+          {/* Input Fields */}
+          {[
+            { label: "Full Name", id: "fullName", type: "text", placeholder: "Enter your full name" },
+            { label: "Mobile Number", id: "mobileNumber", type: "tel", placeholder: "Enter your mobile number" },
+            { label: "Email ID", id: "email", type: "email", placeholder: "Enter your email address" },
+          ].map(({ label, id, type, placeholder }) => (
+            <div className="mb-6" key={id}>
+              <label htmlFor={id} className="block text-sm text-gray-700 mb-2 font-medium">{label}</label>
+              <input
+                id={id}
+                type={type}
+                name={id}
+                value={formData[id]}
+                onChange={handleChange}
+                placeholder={placeholder}
+                className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-lg bg-gray-50 text-gray-700 focus:outline-none focus:border-indigo-500 focus:bg-white transition"
+              />
+              {formErrors[id] && <span className="text-red-600 text-xs mt-1 block">{formErrors[id]}</span>}
+            </div>
+          ))}
 
-          <div className="club-contact-form__group">
-            <label className="club-contact-form__label" htmlFor="email">Email ID</label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="club-contact-form__input"
-              placeholder="Enter your email address"
-            />
-            {formErrors.email && <span className="club-contact-form__error">{formErrors.email}</span>}
-          </div>
-
-          <div className="club-contact-form__group">
-            <label className="club-contact-form__label" htmlFor="course">Course</label>
+          {/* Course */}
+          <div className="mb-6">
+            <label htmlFor="course" className="block text-sm text-gray-700 mb-2 font-medium">Course</label>
             <select
               id="course"
               name="course"
               value={formData.course}
               onChange={handleChange}
-              className="club-contact-form__input club-contact-form__select"
+              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-lg bg-gray-50 text-gray-700 focus:outline-none focus:border-indigo-500"
             >
               <option value="">Select your course</option>
-              <option value="B.Tech">B.Tech</option>
-              <option value="M.Tech">M.Tech</option>
-              <option value="MCA">MCA</option>
-              <option value="M.Sc">M.Sc</option>
-              <option value="MBA">MBA</option>
+              {["B.Tech", "M.Tech", "MCA", "M.Sc", "MBA"].map(course => (
+                <option key={course} value={course}>{course}</option>
+              ))}
             </select>
-            {formErrors.course && <span className="club-contact-form__error">{formErrors.course}</span>}
+            {formErrors.course && <span className="text-red-600 text-xs mt-1 block">{formErrors.course}</span>}
           </div>
 
-          <div className="club-contact-form__group">
-            <label className="club-contact-form__label" htmlFor="year">Year</label>
+          {/* Year */}
+          <div className="mb-6">
+            <label htmlFor="year" className="block text-sm text-gray-700 mb-2 font-medium">Year</label>
             <select
               id="year"
               name="year"
               value={formData.year}
               onChange={handleChange}
-              className="club-contact-form__input club-contact-form__select"
+              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-lg bg-gray-50 text-gray-700 focus:outline-none focus:border-indigo-500"
             >
               <option value="">Select your year</option>
-              <option value="1" disabled={isYearDisabled(1)} style={{ opacity: isYearDisabled(1) ? 0.5 : 1 }}>1st Year</option>
-              <option value="2" disabled={isYearDisabled(2)} style={{ opacity: isYearDisabled(2) ? 0.5 : 1 }}>2nd Year</option>
-              <option value="3" disabled={isYearDisabled(3)} style={{ opacity: isYearDisabled(3) ? 0.5 : 1 }}>3rd Year</option>
-              <option value="4" disabled={isYearDisabled(4)} style={{ opacity: isYearDisabled(4) ? 0.5 : 1 }}>4th Year</option>
+              {[1, 2, 3, 4].map(yr => (
+                <option
+                  key={yr}
+                  value={yr}
+                  disabled={isYearDisabled(yr)}
+                  className={isYearDisabled(yr) ? "text-gray-400 italic bg-gray-50" : "bg-white"}
+                >
+                  {yr} Year
+                </option>
+              ))}
             </select>
-            {formErrors.year && <span className="club-contact-form__error">{formErrors.year}</span>}
+            {formErrors.year && <span className="text-red-600 text-xs mt-1 block">{formErrors.year}</span>}
           </div>
 
-          <div className="club-contact-form__group">
-            <label className="club-contact-form__label" htmlFor="purpose">Purpose</label>
+          {/* Purpose */}
+          <div className="mb-6">
+            <label htmlFor="purpose" className="block text-sm text-gray-700 mb-2 font-medium">Purpose</label>
             <textarea
               id="purpose"
               name="purpose"
               value={formData.purpose}
               onChange={handleChange}
-              className="club-contact-form__input club-contact-form__textarea"
-              placeholder="Enter your purpose for joining the club"
               rows="4"
+              placeholder="Enter your purpose for joining the club"
+              className="w-full px-4 py-3 text-base border-2 border-gray-200 rounded-lg bg-gray-50 text-gray-700 focus:outline-none focus:border-indigo-500"
             ></textarea>
-            {formErrors.purpose && <span className="club-contact-form__error">{formErrors.purpose}</span>}
+            {formErrors.purpose && <span className="text-red-600 text-xs mt-1 block">{formErrors.purpose}</span>}
           </div>
 
-          <div className="club-contact-form__group">
-            <button type="submit" className="club-contact-form__submit" onClick={handleSubmit}>
-              Submit
-            </button>
-          </div>
-          
-          <div className="club-contact-form__divider" />
+          {/* Submit */}
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="w-full py-4 text-white text-base font-semibold bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg shadow-md hover:-translate-y-1 transition-transform"
+          >
+            Submit
+          </button>
+
+          <div className="my-6 border-t border-gray-300"></div>
         </div>
       </div>
 
+      {/* WhatsApp Popup */}
       {showWhatsAppPopup && (
-        <div className="club-contact-form__whatsapp-overlay">
-          <div className="club-contact-form__whatsapp-modal">
-            <div className="club-contact-form__whatsapp-content">
-              <div className="club-contact-form__whatsapp-icon">
-                <i className="fab fa-whatsapp"></i>
-              </div>
-              <h3 className="club-contact-form__whatsapp-title">WhatsApp Not Found</h3>
-              <p className="club-contact-form__whatsapp-text">To contact the club, you need to have WhatsApp installed on your device.</p>
-              <p className="club-contact-form__whatsapp-text">Please download WhatsApp to continue.</p>
-              <button className="club-contact-form__download-btn" onClick={handleDownloadWhatsApp}>
-                Download WhatsApp
-              </button>
-              <button className="club-contact-form__close-btn" onClick={() => setShowWhatsAppPopup(false)}>
-                Close
-              </button>
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50">
+          <div className="bg-[#1a1f3c] rounded-2xl p-8 max-w-sm w-[90%] border border-white/10 shadow-2xl animate-slideUp text-center text-white">
+            <div className="text-5xl text-green-500 mb-6 animate-pulse">
+              <i className="fab fa-whatsapp"></i>
             </div>
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-green-400 to-green-700 bg-clip-text text-transparent mb-2">
+              WhatsApp Not Found
+            </h3>
+            <p className="text-gray-300 mb-2">To contact the club, you need to have WhatsApp installed.</p>
+            <p className="text-gray-300 mb-4">Please download WhatsApp to continue.</p>
+            <button
+              onClick={handleDownloadWhatsApp}
+              className="bg-gradient-to-r from-green-400 to-green-600 text-white font-semibold py-2 px-6 rounded-full mb-3 shadow-lg hover:-translate-y-1 transition-transform"
+            >
+              Download WhatsApp
+            </button>
+            <br />
+            <button
+              onClick={() => setShowWhatsAppPopup(false)}
+              className="text-gray-300 border border-gray-400 py-2 px-5 rounded-full hover:bg-white/10"
+            >
+              Close
+            </button>
           </div>
         </div>
       )}

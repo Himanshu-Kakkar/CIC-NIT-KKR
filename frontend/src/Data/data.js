@@ -272,12 +272,12 @@ export const pastEvents = {
 
 export const facultyMembers = [
   { 
-    name: "Lt. (Dr.) Nidhi Gupta", 
+    name: "Dr. Nidhi Gupta", 
     role: "Faculty In-charge Literary and Debating (LAD)", 
     email: "nidhi.gupta@nitkkr.ac.in",
     phone: "7985275540",
     linkedin: "https://www.linkedin.com/in/nidhiguptaiiitdmj/",
-    image: "https://i.ibb.co/VYjWdzWs/Nidhi.jpg" 
+    image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1752924332/Nidhi_mrzgzr.jpg" 
   },
   { 
     name: "Dr. Suresh Selvam", 
@@ -285,7 +285,7 @@ export const facultyMembers = [
     email: "suresh.selvam@nitkkr.ac.in",
     phone: "9941506562",
     linkedin: "https://www.linkedin.com/in/selvamsuresh/",
-    image: "https://i.ibb.co/rXNCkwL/Suresh.jpg" 
+    image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1752924360/Suresh_yymamx.jpg" 
   },
   { 
     name: "Dr. Munish Bhatia",
@@ -293,7 +293,7 @@ export const facultyMembers = [
     email: "munish.bhatia@nitkkr.ac.in",
     phone: "7837180829",
     linkedin: "https://www.linkedin.com/in/hardidesaii/",
-    image: "https://i.ibb.co/d4zfpphr/Munish.png" 
+    image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1752924342/Munish_nch0eb.png" 
   },
   {
     name: "Dr. Anshu Parashar", 
@@ -301,7 +301,7 @@ export const facultyMembers = [
     email: "anshuparashar@nitkkr.ac.in",
     phone: "9896262553",
     linkedin: "https://www.linkedin.com/in/anshu-parashar-42ab17296/",
-    image: "https://i.ibb.co/Xrw5RbPb/IMG-20250422-202321.jpg"
+    image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1752924316/anshu_qsor7y.jpg"
   },
   {
     name: "Dr. Niyati Baliyan", 
@@ -417,7 +417,6 @@ export const conveners = [
 export const developers = [
   {
     name: "Nikhil Agrawal",
-    // role: "Full Stack Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745606058/Nikhil_fin_sgfslc.jpg", // You'll need to add images
     email: "agrawalnikhil722@gmail.com",
     phone: "6266303022",
@@ -427,7 +426,6 @@ export const developers = [
   },
   {
     name: "Ritk Maheshwari",
-    // role: "Frontend Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745606405/ritik_fin2_kqn3ac.png",
     email: "ritikisnamaheshwari2002@gmail.com",
     phone: "9058058074",
@@ -436,7 +434,6 @@ export const developers = [
   },
   {
     name: "Himanshu kakkar",
-    // role: "Frontend Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745605360/Kakkar_evm5dy.jpg",
     email: "himanshukakkar917@gmail.com",
     phone: "8218287307",
@@ -445,7 +442,6 @@ export const developers = [
   },
   {
     name: "Kushagra Richhariya",
-    // role: "Full Stack Developer",
     image: "https://res.cloudinary.com/dvnzvz4xh/image/upload/v1745604808/kush_u8s8ht.jpg",
     email: "kushagra00richhriya@gmail.com",
     phone: "9174064157",

@@ -1,138 +1,70 @@
-// import React from 'react';
-// import './Footer.css';
-
-// const Footer = () => {
-//   return (
-//     <footer className="footer">
-//       {/* Background decorative elements */}
-//       <div className="footer-bg-elements">
-//         <div className="footer-circle footer-circle-1"></div>
-//         <div className="footer-circle footer-circle-2"></div>
-//         <div className="footer-glow"></div>
-        
-//         {/* Decorative dots patterns */}
-//         <svg className="footer-dots footer-dots-left" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-//           {[0, 1, 2].map(row => (
-//             [0, 1, 2].map(col => (
-//               <circle 
-//                 key={`${row}-${col}`} 
-//                 cx={10 + col * 20} 
-//                 cy={10 + row * 20} 
-//                 r="2" 
-//                 fill="#8ab4f8" 
-//               />
-//             ))
-//           ))}
-//         </svg>
-        
-//         <svg className="footer-dots footer-dots-right" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-//           {[0, 1, 2].map(row => (
-//             [0, 1, 2].map(col => (
-//               <circle 
-//                 key={`${row}-${col}`} 
-//                 cx={10 + col * 20} 
-//                 cy={10 + row * 20} 
-//                 r="2" 
-//                 fill="#8ab4f8" 
-//               />
-//             ))
-//           ))}
-//         </svg>
-//       </div>
-      
-//       <div className="container">
-//         <div className="footer-content">
-//           <div className="footer-links">
-//           <li><a href="/">Home</a></li>
-//               <li><a href="/clubs">Clubs</a></li>
-//               <li><a href="/pastevents">Gallery</a></li>
-//               <li><a href="/contact">Contact</a></li>
-//               <li><a href="/developers">Developers</a></li>
-//           </div>
-          
-//           {/* Social icons */}
-//           <div className="social-icons">
-//             <a href="#" className="social-icon" aria-label="Twitter">
-//               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//                 <path d="M22 4s-.7 2.1-2 3.4c.3 4.6-5.1 10.8-13 11.6-4 .5-7-1 7-3.5-5.5 0-9.5-1.5-11-5 1 0 2 .5 3 0C2 9 .5 5.5 2.5 3c1 1.5 3 2.5 5 2.5C4 4 7 .5 11 2c4 1.5 6 3.5 9 3 1-.5 2-1.5 2-1z"></path>
-//               </svg>
-//             </a>
-//             <a href="#" className="social-icon" aria-label="Instagram">
-//               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-//                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-//                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-//               </svg>
-//             </a>
-//             <a href="#" className="social-icon" aria-label="Facebook">
-//               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-//               </svg>
-//             </a>
-//             <a href="#" className="social-icon" aria-label="LinkedIn">
-//               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-//                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-//                 <rect x="2" y="9" width="4" height="12"></rect>
-//                 <circle cx="4" cy="4" r="2"></circle>
-//               </svg>
-//             </a>
-//           </div>
-          
-//           <p className="copyright">© 2025 Clubs Management Portal | Developed by NRHK❤️</p>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// };
-
-// export default Footer;
-
-
-
 import React from 'react';
-import './Footer.css';
+// import './Footer.css';
 import { FaTwitter, FaInstagram, FaFacebook, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="relative w-full bg-[#121f36] pt-10 pb-8 mt-auto overflow-hidden">
       {/* Background decorative elements */}
-      <div className="footer-bg-elements">
-        <div className="footer-circle footer-circle-1"></div>
-        <div className="footer-circle footer-circle-2"></div>
-        <div className="footer-glow"></div>
-        
+      <div className="pointer-events-none absolute inset-0 z-10">
+        <div className="absolute rounded-full bg-gradient-to-br from-[#3b5bdb22] to-[#4c6ef522] w-[200px] h-[200px] -top-[100px] left-[10%]" />
+        <div className="absolute rounded-full bg-gradient-to-br from-[#3b5bdb22] to-[#4c6ef522] w-[150px] h-[150px] -bottom-[50px] right-[15%]" />
+        <div className="absolute w-[300px] h-[300px] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style={{background: 'radial-gradient(circle, rgba(138, 180, 248, 0.1) 0%, rgba(10, 19, 40, 0) 70%)'}} />
+        {/* Decorative dots patterns */}
+        <svg className="absolute opacity-20 left-[5%] top-[30%] hidden sm:block" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          {[0, 1, 2].map(row => (
+            [0, 1, 2].map(col => (
+              <circle 
+                key={`${row}-${col}`} 
+                cx={10 + col * 20} 
+                cy={10 + row * 20} 
+                r="2" 
+                fill="#8ab4f8" 
+              />
+            ))
+          ))}
+        </svg>
+        <svg className="absolute opacity-20 right-[5%] bottom-[30%] hidden sm:block" width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          {[0, 1, 2].map(row => (
+            [0, 1, 2].map(col => (
+              <circle 
+                key={`${row}-${col}`} 
+                cx={10 + col * 20} 
+                cy={10 + row * 20} 
+                r="2" 
+                fill="#8ab4f8" 
+              />
+            ))
+          ))}
+        </svg>
       </div>
-      
-      <div className="container">
-        <div className="footer-content">
-          <nav className="footer-nav">
-            <ul className="footer-links">
+      <div className="relative z-20 max-w-[1200px] mx-auto px-5">
+        <div className="flex flex-col items-center justify-center w-full">
+          <nav className="w-full">
+            <ul className="flex flex-wrap justify-center gap-12 mb-10 w-full list-none p-0 m-0 text-base font-medium text-[#a0aec0] [&>li>a]:transition-colors [&>li>a]:duration-300 [&>li>a]:relative [&>li>a]:pb-1 [&>li>a]:after:content-[''] [&>li>a]:after:absolute [&>li>a]:after:w-0 [&>li>a]:after:h-0.5 [&>li>a]:after:left-1/2 [&>li>a]:after:bottom-0 [&>li>a]:after:bg-[#8ab4f8] [&>li>a]:after:transition-all [&>li>a]:after:duration-300 [&>li>a]:after:transform [&>li>a]:after:-translate-x-1/2 hover:[&>li>a]:text-[#8ab4f8] hover:[&>li>a]:after:w-full max-sm:gap-8 max-[480px]:flex-col max-[480px]:gap-4 max-[480px]:items-center">
               <li><a href="/">Home</a></li>
               <li><a href="/clubs">Clubs</a></li>
               <li><a href="/pastevents">Gallery</a></li>
               <li><a href="/contact">Contact</a></li>
-              <li><a href="/developers">Developers</a></li>
+              {/* <li><a href="/developers">Developers</a></li> */}
             </ul>
           </nav>
-          
           {/* Social icons */}
-          <div className="social-icons">
-            <a href="#" className="social-icon" aria-label="Twitter">
+          <div className="flex justify-center gap-6 mt-4">
+            <a href="#" className="flex items-center justify-center w-9 h-9 rounded-full bg-white/5 text-[#a0aec0] transition-all duration-300 hover:bg-[#8ab4f833] hover:text-[#8ab4f8] hover:-translate-y-1" aria-label="Twitter">
               <FaTwitter size={18} />
             </a>
-            <a href="#" className="social-icon" aria-label="Instagram">
+            <a href="#" className="flex items-center justify-center w-9 h-9 rounded-full bg-white/5 text-[#a0aec0] transition-all duration-300 hover:bg-[#8ab4f833] hover:text-[#8ab4f8] hover:-translate-y-1" aria-label="Instagram">
               <FaInstagram size={18} />
             </a>
-            <a href="#" className="social-icon" aria-label="Facebook">
+            <a href="#" className="flex items-center justify-center w-9 h-9 rounded-full bg-white/5 text-[#a0aec0] transition-all duration-300 hover:bg-[#8ab4f833] hover:text-[#8ab4f8] hover:-translate-y-1" aria-label="Facebook">
               <FaFacebook size={18} />
             </a>
-            <a href="#" className="social-icon" aria-label="LinkedIn">
+            <a href="#" className="flex items-center justify-center w-9 h-9 rounded-full bg-white/5 text-[#a0aec0] transition-all duration-300 hover:bg-[#8ab4f833] hover:text-[#8ab4f8] hover:-translate-y-1" aria-label="LinkedIn">
               <FaLinkedin size={18} />
             </a>
           </div>
-          
-          <p className="copyright">© 2025 Clubs Management Portal | Developed by NRHK❤️</p>
+          <p className="text-[#64748b] text-sm text-center w-full mt-8">© 2025 Clubs Management Portal | CIC </p>
         </div>
       </div>
     </footer>
